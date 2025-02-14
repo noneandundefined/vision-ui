@@ -1,9 +1,18 @@
-function App() {
-	return (
-		<>
-			<h1 className="text-2xl font-bold underline">Hello world!</h1>
-		</>
-	);
-}
+import { createBrowserRouter } from 'react-router-dom';
+import Index from './pages/Index';
+
+const App = createBrowserRouter([
+	{
+		path: '/',
+		children: [
+			{
+				path: '',
+				element: (
+					<Index />
+				),
+			},
+		],
+	},
+]);
 
 export default App;
