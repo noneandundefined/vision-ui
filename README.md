@@ -1,5 +1,7 @@
 # <img src="https://c5c47f90-74c5-4044-9c24-d2b65d1f3813.selstorage.ru/vision-logo.png" width="300">
 
+[![Compiler and Build](https://github.com/Artymiik/vision/actions/workflows/compiler-client.yml/badge.svg)](https://github.com/Artymiik/vision/actions/workflows/compiler-client.yml)
+
 ## Introduction
 
 Vision allows any user, whether it's your development team, to visually look at the server in production mode. Be aware of all errors, server response time, CPU and RAM load. Look at the Vision!
