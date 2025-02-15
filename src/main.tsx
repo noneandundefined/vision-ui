@@ -9,5 +9,3 @@ createRoot(document.getElementById('vision')!).render(
 		<RouterProvider router={App} />
 	</StrictMode>
 );
-
-

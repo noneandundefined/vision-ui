@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Effects from "../components/Effects"
 import Header from "../components/Header"
 import Cancel from "../constants/svgs/cancel"
@@ -8,6 +8,8 @@ import Server from "../constants/svgs/server"
 import ServerLoad from "../components/Index/ServerLoad"
 import LastErrors from "../components/Index/LastErrors"
 import Requests from "../components/Index/Requests"
+import monitoringService from "../services/monitoring.service"
+import { MonitoringType } from "../types/monitoring"
 
 const panel_list = [
     {
@@ -33,7 +35,20 @@ const panel_list = [
 ]
 
 const Index = () => {
+    const [monitoringData, setMonitoringData] = useState<MonitoringType | null>();
     const [currentStep, setCurrentStep] = useState<number>(0);
+
+    useEffect(() => {
+        const fetch = async () => {
+            try {
+                const response = await monitoringService.fetchMonitoringData();
+                setMonitoringData(response);
+                console.log(monitoringData)
+            } catch (error) { }
+        }
+
+        fetch();
+    }, [])
 
     const displayStep = (step: number) => {
         switch (step) {
@@ -51,6 +66,9 @@ const Index = () => {
             <Effects />
 
             <div>
+                {monitoringData && (
+                    <p>{monitoringData.cpu_usage}</p>
+                )}
                 <Header />
                 <div className="my-5 flex items-center justify-between bg-[#ffffff21]">
                     {panel_list.map((panel, index) => (

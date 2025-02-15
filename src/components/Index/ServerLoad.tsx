@@ -9,8 +9,8 @@ const ServerLoad = () => {
                         <div className="relative">
                             <div className="size-[9rem]">
                                 <svg className="size-[8rem] -rotate-90" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
-                                    <circle cx="18" cy="18" r="16" fill="none" className="stroke-current text-gray-200 dark:text-neutral-700" stroke-width="3"></circle>
-                                    <circle cx="18" cy="18" r="16" fill="none" className="stroke-current" style={{ color: "#ffe900" }} stroke-width="3" stroke-dasharray="100" stroke-dashoffset="80" stroke-linecap="round"></circle>
+                                    <circle cx="18" cy="18" r="16" fill="none" className="stroke-current text-gray-200 dark:text-neutral-700" strokeWidth="3"></circle>
+                                    <circle cx="18" cy="18" r="16" fill="none" className="stroke-current" style={{ color: "#ffe900" }} strokeWidth="3" strokeDasharray="100" strokeDashoffset="80" strokeLinecap="round"></circle>
                                 </svg>
 
                                 <div className="absolute top-[4rem] left-[4.2rem] transform -translate-y-1/2 -translate-x-1/2">
@@ -37,8 +37,8 @@ const ServerLoad = () => {
                         <div className="relative">
                             <div className="size-[9rem]">
                                 <svg className="size-[8rem] -rotate-90" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
-                                    <circle cx="18" cy="18" r="16" fill="none" className="stroke-current text-gray-200 dark:text-neutral-700" stroke-width="3"></circle>
-                                    <circle cx="18" cy="18" r="16" fill="none" className="stroke-current" style={{ color: "#00ff6e" }} stroke-width="3" stroke-dasharray="100" stroke-dashoffset="80" stroke-linecap="round"></circle>
+                                    <circle cx="18" cy="18" r="16" fill="none" className="stroke-current text-gray-200 dark:text-neutral-700" strokeWidth="3"></circle>
+                                    <circle cx="18" cy="18" r="16" fill="none" className="stroke-current" style={{ color: "#00ff6e" }} strokeWidth="3" strokeDasharray="100" strokeDashoffset="80" strokeLinecap="round"></circle>
                                 </svg>
 
                                 <div className="absolute top-[4rem] left-[4.2rem] transform -translate-y-1/2 -translate-x-1/2">
@@ -65,8 +65,8 @@ const ServerLoad = () => {
                         <div className="relative">
                             <div className="size-[9rem]">
                                 <svg className="size-[8rem] -rotate-90" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
-                                    <circle cx="18" cy="18" r="16" fill="none" className="stroke-current text-gray-200 dark:text-neutral-700" stroke-width="3"></circle>
-                                    <circle cx="18" cy="18" r="16" fill="none" className="stroke-current" style={{ color: "#6100ff" }} stroke-width="3" stroke-dasharray="100" stroke-dashoffset="80" stroke-linecap="round"></circle>
+                                    <circle cx="18" cy="18" r="16" fill="none" className="stroke-current text-gray-200 dark:text-neutral-700" strokeWidth="3"></circle>
+                                    <circle cx="18" cy="18" r="16" fill="none" className="stroke-current" style={{ color: "#6100ff" }} strokeWidth="3" strokeDasharray="100" strokeDashoffset="80" strokeLinecap="round"></circle>
                                 </svg>
 
                                 <div className="absolute top-[4rem] left-[4.2rem] transform -translate-y-1/2 -translate-x-1/2">

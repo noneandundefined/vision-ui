@@ -13,24 +13,26 @@ class MonitoringSerivce {
 		return '';
 	}
 
-	public async fetchMonitoringData(): Promise<MonitoringType | string> {
+	public async fetchMonitoringData(): Promise<MonitoringType | null> {
 		const url = this.isURL();
 
 		try {
-			const response = await axios.get<MonitoringType>(url);
-			return response.data;
+			const response = await axios.get(url);
+			return response.data.message;
 		} catch (error) {
 			if (error instanceof AxiosError) {
 				if (error.response) {
-					return error.response.data.message;
+					throw new Error(error.response.data.message);
 				} else if (error.request) {
-					return 'Ошибка при отправки запроса.';
+					throw new Error('Ошибка при отправки запроса.');
 				}
 			} else {
-				return 'Произошла ошибка. Пожалуйста, попробуйте снова.';
+				throw new Error(
+					'Произошла ошибка. Пожалуйста, попробуйте снова.'
+				);
 			}
 
-			return error.message;
+			return null;
 		}
 	}
 }
