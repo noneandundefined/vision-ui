@@ -16,6 +16,12 @@ Configuring GO for server monitoring
 
 ### Initial configuration
 
+```sh
+go get github.com/shirou/gopsutil/cpu
+go get github.com/shirou/gopsutil/mem
+go get github.com/shirou/gopsutil/net
+```
+
 ```go
 type Vision struct {
 	stats *MonitoringStats
@@ -138,13 +144,13 @@ func (v *Vision) VisionDBQuery(duration time.Duration) {
 The VisionDBError function increments the database error counter (DBErrorCount) when an error occurs.
 
 ```go
-func (v *Vision) VisionDBQuery(duration time.Duration) {
+func (v *Vision) VisionDBError() {
 	v.stats.Lock()
 	defer v.stats.Unlock()
 
-	v.stats.DBQueryCount++
-	v.stats.DBTotalLatency += duration
+	v.stats.DBErrorCount++
 }
+
 ```
 
 The getCPUUsage function tries to get the percentage of CPU usage for the last second.
