@@ -9,7 +9,11 @@ interface MessageBoxProps {
 	setIsError: any;
 }
 
-const MessageBox: React.FC<MessageBoxProps> = ({ status, message, setIsError }) => {
+const MessageBox: React.FC<MessageBoxProps> = ({
+	status,
+	message,
+	setIsError,
+}) => {
 	const statusCode = status.toString();
 
 	useEffect(() => {
@@ -18,7 +22,7 @@ const MessageBox: React.FC<MessageBoxProps> = ({ status, message, setIsError }) 
 		}, 4000);
 
 		return () => clearTimeout(timeoutId);
-	}, [])
+	}, []);
 
 	return (
 		<>

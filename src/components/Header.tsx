@@ -4,7 +4,11 @@ const Header = () => {
 	return (
 		<>
 			<div className="flex items-center">
-				<img src="/logo-vision-none.png" width={50} alt="" />
+				<img
+					src="https://github.com/Artymiik/vision/blob/main/public/logo-vision-none.png?raw=true"
+					width={50}
+					alt=""
+				/>
 				<div className="ml-[1rem]">
 					<p>
 						<Link

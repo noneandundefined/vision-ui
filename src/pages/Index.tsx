@@ -12,6 +12,7 @@ import monitoringService from '../services/monitoring.service';
 import { MonitoringType } from '../types/monitoring';
 import Skeleton from '../components/Skeleton';
 import MessageBox from '../components/MessageBox';
+import DatabaseInfo from '../components/Index/DatabaseInfo';
 
 const panel_list = [
 	{
@@ -38,7 +39,7 @@ const panel_list = [
 
 const Index = () => {
 	const [isError, setIsError] = useState<boolean>(false);
-	const [responseError, setResponseError] = useState<string>("");
+	const [responseError, setResponseError] = useState<string>('');
 	const [monitoringData, setMonitoringData] = useState<MonitoringType | null>(
 		null
 	);
@@ -62,6 +63,8 @@ const Index = () => {
 		switch (step) {
 			case 0:
 				return <ServerLoad data={monitoringData?.system} />;
+			case 1:
+				return <DatabaseInfo data={monitoringData?.database} />;
 			case 2:
 				return <Requests data={monitoringData?.requests} />;
 			case 3:
@@ -79,7 +82,13 @@ const Index = () => {
 		<>
 			<Effects />
 
-			{isError && <MessageBox status={500} message={responseError} setIsError={setIsError} />}
+			{isError && (
+				<MessageBox
+					status={500}
+					message={responseError}
+					setIsError={setIsError}
+				/>
+			)}
 
 			{!monitoringData ? (
 				<Skeleton />
