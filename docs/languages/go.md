@@ -4,13 +4,36 @@ Configuring GO for server monitoring
 
 ### Content
 
+- Initial configuration
 - Models
 - Methods of obtaining monitoring
 - Statistics
+- Linking monitoring to an endpoint
 
 ## Setup
 
 > Below are the basic functions to get the basic monitoring components for your server, select the necessary ones and use them
+
+### Initial configuration
+
+```go
+type Vision struct {
+	stats *MonitoringStats
+}
+
+// The NewVision function is a constructor for creating
+// a new instance of the Vision structure.
+// It initializes the stats field with default values,
+// including creating an empty LastErrors
+// slice to store the latest errors.
+func NewVision() *Vision {
+	return &Vision{
+		stats: &MonitoringStats{
+			LastErrors: make([]ErrorLog, 0),
+		},
+	}
+}
+```
 
 ### Models
 
@@ -242,4 +265,26 @@ func (v *Vision) GetVisionStats() MonitoringResponse {
 		LastErrors: v.stats.LastErrors,
 	}
 }
+```
+
+### Linking monitoring to an endpoint
+
+Create a new handler to handle admin requests and output the GetVisionStats() function.
+
+### Example
+
+Before starting the database query, create a variable for the initial time and calculate the difference at the end.
+
+If there is an error, call the VisionDBError() method to increase the DB error counter.
+
+```go
+queryStart := time.Now()
+isUsername, err := actions.GetUserByUsername(payload.Username)
+if err != nil {
+	h.monitor.VisionDBError()
+	h.logger.Error("[DB ERROR]", zap.Error(err))
+	utils.WriteError(w, http.StatusInternalServerError, err)
+	return
+}
+h.monitor.VisionDBQuery(time.Since(queryStart))
 ```
