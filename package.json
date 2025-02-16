@@ -6,9 +6,8 @@
 	"type": "module",
 	"main": "./dist/vision.bundle.js",
 	"unpkg": "./dist/vision.bundle.js",
-	"repository": {
-		"url": "https://github.com/Artymiik/vision"
-	},
+	"homepage": "https://github.com/Artymiik/vision",
+	"repository": "git@github.com:Artymiik/vision.git",
 	"files": [
 		"./dist/vision.bundle.js",
 		"./dist/vision.css"
@@ -23,7 +22,12 @@
 	"license": "MIT",
 	"scripts": {
 		"dev": "vite",
+		"install:prod": "set NODE_ENV=production&& pnpm install",
 		"build": "tsc -b && vite build",
+		"clean": "rimraf ./dist",
+		"open-static": "start http://localhost:3000",
+		"serve-static": "serve dist",
+		"start": "npm-run-all --parallel serve-static open-static",
 		"lint": "eslint .",
 		"lint:fix": "eslint . --fix",
 		"format": "prettier --write .",
@@ -47,6 +51,7 @@
 		"eslint-plugin-react-hooks": "^5.0.0",
 		"eslint-plugin-react-refresh": "^0.4.18",
 		"globals": "^15.14.0",
+		"open": "^10.1.0",
 		"postcss": "^8.5.2",
 		"prettier": "^3.5.1",
 		"tailwindcss": "3",
