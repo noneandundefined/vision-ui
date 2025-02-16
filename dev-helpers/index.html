@@ -1,0 +1,38 @@
+<!-- HTML for dev server -->
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="icon" type="image/svg+xml" href="/logo-vision-none.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta
+			name="description"
+			content="Keep up to date with what is happening on your server using - Vision"
+		/>
+
+        <!-- Stylization and actions -->
+        <script type="module" src="https://" defer></script>
+        <link rel="stylesheet" href="https://">
+
+		<title>Look at the Vision!</title>
+
+		<!-- Defining a meta tag for the monitoring URL -->
+		<!-- Thanks to this meta tag, Vision will take server monitoring -->
+		<meta
+			name="monitoring-url"
+			content="http://localhost:8001/micro/user/admin/vision/stats"
+		/>
+	</head>
+	<body>
+		<!--
+			This HTML file is a template.
+
+			Vision allows any user, whether it's your development team,
+			to visually look at the server in production mode.
+
+			Be aware of all errors, server response time, CPU and RAM load.
+			Look at the Vision!
+		-->
+		<div id="vision"></div>
+	</body>
+</html>
