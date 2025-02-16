@@ -1,15 +1,13 @@
 const Database = () => {
-    return (
-        <>
-            <div className="mt-[5rem]">
-                <p className="text-[1.2rem] font-semibold">Database</p>
+	return (
+		<>
+			<div className="mt-[5rem]">
+				<p className="text-[1.2rem] font-semibold">Database</p>
 
-                <div>
+				<div></div>
+			</div>
+		</>
+	);
+};
 
-                </div>
-            </div>
-        </>
-    )
-}
-
-export default Database
+export default Database;

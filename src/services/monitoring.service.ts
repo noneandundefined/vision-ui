@@ -18,6 +18,7 @@ class MonitoringSerivce {
 
 		try {
 			const response = await axios.get(url);
+			console.log(response.data.message);
 			return response.data.message;
 		} catch (error) {
 			if (error instanceof AxiosError) {
