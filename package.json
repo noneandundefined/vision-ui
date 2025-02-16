@@ -1,8 +1,26 @@
 {
 	"name": "vision",
+	"description": "Keep up to date with what is happening on your server using - Vision",
 	"private": true,
 	"version": "1.0.0",
 	"type": "module",
+	"main": "./dist/vision.bundle.js",
+	"unpkg": "./dist/vision.bundle.js",
+	"repository": {
+		"url": "https://github.com/Artymiik/vision"
+	},
+	"files": [
+		"./dist/vision.bundle.js",
+		"./dist/vision.css"
+	],
+	"keywords": [
+		"vision",
+		"vision-js",
+		"monitoring",
+		"metrics"
+	],
+	"author": "Artemiik",
+	"license": "MIT",
 	"scripts": {
 		"dev": "vite",
 		"build": "tsc -b && vite build",

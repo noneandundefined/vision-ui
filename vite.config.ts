@@ -7,9 +7,9 @@ export default defineConfig({
 	build: {
 		rollupOptions: {
 			output: {
-				entryFileNames: `[name].bundle.js`,
-				chunkFileNames: `[name].chunk.js`,
-				assetFileNames: `[name].[ext]`,
+				entryFileNames: `vision.bundle.js`,
+				chunkFileNames: `vision.chunk.js`,
+				assetFileNames: `vision.[ext]`,
 			},
 		},
 	},

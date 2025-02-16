@@ -4,11 +4,31 @@
 		<meta charset="UTF-8" />
 		<link rel="icon" type="image/svg+xml" href="/logo-vision-none.png" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Vision</title>
-		<script type="module" crossorigin src="/index.bundle.js"></script>
-		<link rel="stylesheet" crossorigin href="/index.css">
+		<meta
+			name="description"
+			content="Keep up to date with what is happening on your server using - Vision"
+		/>
+
+		<title>Look at the Vision!</title>
+
+		<!-- Defining a meta tag for the monitoring URL -->
+		<meta
+			name="monitoring-url"
+			content="http://localhost:8001/micro/user/admin/vision/stats"
+		/>
+		<script type="module" crossorigin src="/vision.bundle.js"></script>
+		<link rel="stylesheet" crossorigin href="/vision.css">
 	</head>
 	<body>
+		<!--
+			This HTML file is a template.
+
+			Vision allows any user, whether it's your development team,
+			to visually look at the server in production mode.
+
+			Be aware of all errors, server response time, CPU and RAM load.
+			Look at the Vision!
+		-->
 		<div id="vision"></div>
 	</body>
 </html>
