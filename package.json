@@ -1,7 +1,7 @@
 {
-	"name": "vision",
+	"name": "@artemiik/vision-ui",
 	"description": "Keep up to date with what is happening on your server using - Vision",
-	"private": true,
+	"private": false,
 	"version": "1.0.0",
 	"type": "module",
 	"main": "./dist/vision.bundle.js",
