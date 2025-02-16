@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import Cancel from '../constants/svgs/cancel';
 import Close from '../constants/svgs/close';
 import Done from '../constants/svgs/done';
@@ -5,10 +6,19 @@ import Done from '../constants/svgs/done';
 interface MessageBoxProps {
 	status: number;
 	message: string;
+	setIsError: any;
 }
 
-const MessageBox: React.FC<MessageBoxProps> = ({ status, message }) => {
+const MessageBox: React.FC<MessageBoxProps> = ({ status, message, setIsError }) => {
 	const statusCode = status.toString();
+
+	useEffect(() => {
+		const timeoutId = setTimeout(() => {
+			setIsError(false);
+		}, 4000);
+
+		return () => clearTimeout(timeoutId);
+	}, [])
 
 	return (
 		<>

@@ -37,6 +37,8 @@ const panel_list = [
 ];
 
 const Index = () => {
+	const [isError, setIsError] = useState<boolean>(false);
+	const [responseError, setResponseError] = useState<string>("");
 	const [monitoringData, setMonitoringData] = useState<MonitoringType | null>(
 		null
 	);
@@ -47,7 +49,10 @@ const Index = () => {
 			try {
 				const response = await monitoringService.fetchMonitoringData();
 				setMonitoringData(response);
-			} catch (error) {}
+			} catch (error: any) {
+				setIsError(true);
+				setResponseError(error.message);
+			}
 		};
 
 		fetch();
@@ -73,7 +78,8 @@ const Index = () => {
 	return (
 		<>
 			<Effects />
-			<MessageBox status={400} message="Error, please try again!" />
+
+			{isError && <MessageBox status={500} message={responseError} setIsError={setIsError} />}
 
 			{!monitoringData ? (
 				<Skeleton />
@@ -93,7 +99,7 @@ const Index = () => {
 								key={index}
 								onClick={() => setCurrentStep(panel.step)}
 							>
-								<p>{panel.title}</p>
+								<p id="title__panel">{panel.title}</p>
 								{panel.icon}
 							</div>
 						))}
