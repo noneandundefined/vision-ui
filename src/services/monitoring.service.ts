@@ -9,8 +9,7 @@ class MonitoringSerivce {
 	private isURL(): string {
 		if (this.metaURL) return this.metaURL.content;
 
-		console.error("Meta tag 'monitoring-url' not found.");
-		return '';
+		throw new Error("Meta tag 'monitoring-url' not found.");
 	}
 
 	public async fetchMonitoringData(): Promise<MonitoringType | null> {
