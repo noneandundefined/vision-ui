@@ -2,7 +2,7 @@
 	"name": "@artemiik/vision-ui",
 	"description": "Keep up to date with what is happening on your server using - Vision",
 	"private": false,
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"type": "module",
 	"main": "./dist/vision.bundle.js",
 	"unpkg": "./dist/vision.bundle.js",
