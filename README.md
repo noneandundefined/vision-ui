@@ -1,12 +1,14 @@
 <p align="center">
   <a href="" target="_blank" rel="noopener noreferrer">
-    <img width="180" src="https://github.com/noneandundefined/vision-ui/blob/main/public/logo-vision-none.png" alt="Vision logo">
+    <img width="150" src="https://github.com/noneandundefined/vision-ui/blob/main/public/logo-vision-none.png" alt="Vision logo">
   </a>
 </p>
 
-[![Compiler and Build](https://github.com/Artymiik/vision/actions/workflows/compiler-client.yml/badge.svg)](https://github.com/Artymiik/vision/actions/workflows/compiler-client.yml)
+<p align="center">
+    [![Compiler and Build](https://github.com/Artymiik/vision/actions/workflows/compiler-client.yml/badge.svg)](https://github.com/Artymiik/vision/actions/workflows/compiler-client.yml)
 
-![NPM Version](https://img.shields.io/npm/v/%40artemiik%2Fvision-ui) ![NPM Downloads](https://img.shields.io/npm/dm/%40artemiik%2Fvision-ui)
+    ![NPM Version](https://img.shields.io/npm/v/%40artemiik%2Fvision-ui) ![NPM Downloads](https://img.shields.io/npm/dm/%40artemiik%2Fvision-ui)
+</p>
 
 ## Introduction
 
