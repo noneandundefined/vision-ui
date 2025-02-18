@@ -1,4 +1,8 @@
-# <img src="https://c5c47f90-74c5-4044-9c24-d2b65d1f3813.selstorage.ru/vision-logo.png" width="300">
+<p align="center">
+  <a href="" target="_blank" rel="noopener noreferrer">
+    <img width="180" src="https://github.com/noneandundefined/vision-ui/blob/main/public/logo-vision-none.png" alt="Vision logo">
+  </a>
+</p>
 
 [![Compiler and Build](https://github.com/Artymiik/vision/actions/workflows/compiler-client.yml/badge.svg)](https://github.com/Artymiik/vision/actions/workflows/compiler-client.yml)
 
