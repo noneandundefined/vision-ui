@@ -26,7 +26,13 @@ Vision allows any user, whether it's your development team, to visually look at 
 
 #### Usage
 
-- [Configuration](https://github.com/Artymiik/vision-ui/blob/main/docs/usage/configuration.md)
+- [Configuration](https://github.com/noneandundefined/vision-ui/tree/main/docs)
+
+#### Packages
+
+- [Go](https://github.com/noneandundefined/vision-go)
+- [JavaScript](https://github.com/noneandundefined/vision-js-ts)
+- [TypeScript](https://github.com/noneandundefined/vision-js-ts)
 
 ## Security contact
 
