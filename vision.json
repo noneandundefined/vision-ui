@@ -1,0 +1,46 @@
+{
+	"message": {
+		"requests": {
+			"request_count": 7,
+			"request_error_count": 0,
+			"request_success_count": 100,
+			"request_avg_latency_ms": 301
+		},
+		"database": {
+			"database_queries": 15,
+			"database_error": 1,
+			"database_avg_latency_ms": 104.509
+		},
+		"system": {
+			"cpu_usage": 2.734375,
+			"memory_usage": 72,
+			"network_recv": 269.65092086792
+		},
+		"last_errors": [
+			{
+				"timestamp": "2025-02-16T12:36:49.000Z",
+				"method": "GET",
+				"path": "/",
+				"error": "Error: Server error please try again later"
+			},
+			{
+				"timestamp": "2025-02-16T12:37:49.000Z",
+				"method": "GET",
+				"path": "/",
+				"error": "Error: The server is inactive"
+			},
+			{
+				"timestamp": "2025-02-16T12:38:49.000Z",
+				"method": "POST",
+				"path": "/signin",
+				"error": "Error: Server error please try again later"
+			},
+			{
+				"timestamp": "2025-02-17T11:19:35.000Z",
+				"method": "POST",
+				"path": "/signup",
+				"error": "Error: The database connection is disabled"
+			}
+		]
+	}
+}
