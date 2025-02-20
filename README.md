@@ -6,6 +6,7 @@
 </br>
 <p align="center">
   <a href="https://github.com/Artymiik/vision/actions/workflows/compiler-client.yml"><img src="https://github.com/Artymiik/vision/actions/workflows/compiler-client.yml/badge.svg" alt="Compiler and Build"></a>
+  <a href="https://github.com/noneandundefined/vision-ui/actions/workflows/pages/pages-build-deployment"><img src="https://github.com/noneandundefined/vision-ui/actions/workflows/pages/pages-build-deployment/badge.svg" alt="pages-build-deployment"></a>
 </p>
 <p align="center">
   <a href="https://www.npmjs.com/package/@artemiik/vision-ui"><img src="https://img.shields.io/npm/v/%40artemiik%2Fvision-ui" alt="Compiler and Build"></a>
