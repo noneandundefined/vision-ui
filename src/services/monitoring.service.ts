@@ -2,14 +2,25 @@ import axios, { AxiosError } from 'axios';
 import { MonitoringType } from '../types/monitoring';
 
 class MonitoringSerivce {
+	private readonly metaFILE: HTMLMetaElement | null = document.querySelector(
+		'meta[name="monitoring-file"]'
+	);
 	private readonly metaURL: HTMLMetaElement | null = document.querySelector(
 		'meta[name="monitoring-url"]'
 	);
 
+	private isFILE(): string {
+		if (this.metaFILE) return this.metaFILE.content;
+
+		console.warn("Meta tag 'monitoring-file' not found.");
+		return '';
+	}
+
 	private isURL(): string {
 		if (this.metaURL) return this.metaURL.content;
 
-		throw new Error("Meta tag 'monitoring-url' not found.");
+		console.warn("Meta tag 'monitoring-url' not found.");
+		return '';
 	}
 
 	public async fetchMonitoringData(): Promise<MonitoringType | null> {
@@ -31,6 +42,17 @@ class MonitoringSerivce {
 				);
 			}
 
+			return null;
+		}
+	}
+
+	public async fetchMonitoringDataFile(): Promise<MonitoringType | null> {
+		const file = this.isFILE();
+
+		try {
+			const data = await fetch(file).then((response) => response.json());
+			return data.message;
+		} catch (error) {
 			return null;
 		}
 	}

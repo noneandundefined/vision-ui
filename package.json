@@ -6,8 +6,8 @@
 	"type": "module",
 	"main": "./dist/vision.bundle.js",
 	"unpkg": "./dist/vision.bundle.js",
-	"homepage": "https://github.com/Artymiik/vision",
-	"repository": "git@github.com:Artymiik/vision.git",
+	"homepage": "https://github.com/noneandundefined/vision",
+	"repository": "git@github.com:noneandundefined/vision.git",
 	"files": [
 		"./dist/vision.bundle.js",
 		"./dist/vision.css"

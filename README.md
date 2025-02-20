@@ -31,8 +31,8 @@ Vision allows any user, whether it's your development team, to visually look at 
 #### Packages
 
 - [Go](https://github.com/noneandundefined/vision-go)
-- [JavaScript](https://github.com/noneandundefined/vision-js-ts)
-- [TypeScript](https://github.com/noneandundefined/vision-js-ts)
+- [JavaScript](https://github.com/noneandundefined/vision-npm)
+- [TypeScript](https://github.com/noneandundefined/vision-npm)
 
 ## Security contact
 

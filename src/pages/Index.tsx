@@ -48,7 +48,13 @@ const Index = () => {
 	useEffect(() => {
 		const fetch = async () => {
 			try {
-				const response = await monitoringService.fetchMonitoringData();
+				let response = await monitoringService.fetchMonitoringData();
+
+				if (!response) {
+					response = await monitoringService.fetchMonitoringDataFile();
+					console.log(response)
+				}
+
 				setMonitoringData(response);
 			} catch (error: any) {
 				setIsError(true);

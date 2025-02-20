@@ -15,24 +15,13 @@
 		/>
 
 		<!-- Stylization and actions -->
-		<script
-			type="module"
-			src="https://unpkg.com/@artemiik/vision-ui@1.0.2/dist/vision.bundle.js"
-			defer
-		></script>
-		<link
-			rel="stylesheet"
-			href="https://unpkg.com/@artemiik/vision-ui@1.0.2/dist/vision.css"
-		/>
+		<script type="module" src="./vision.bundle.js" defer></script>
+		<link rel="stylesheet" href="./vision.css" />
 
 		<title>Look at the Vision!</title>
 
-		<!-- Defining a meta tag for the monitoring URL -->
 		<!-- Thanks to this meta tag, Vision will take server monitoring -->
-		<meta
-			name="monitoring-url"
-			content="http://localhost:8001/micro/user/admin/vision/stats"
-		/>
+		<meta name="monitoring-file" content="./vision.json" />
 	</head>
 	<body>
 		<!--
