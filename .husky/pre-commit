@@ -1,35 +1,39 @@
 #!/bin/sh
 set -e
 
-echo "Running pre-commit hook..."
+echo "${GREEN}Running pre-commit hook...${RESET}"
+
+YELLOW="\033[33m"
+GREEN="\033[32m"
+RESET="\033[0m"
 
 # Получаем список измененных файлов
 CHANGED_FILES=$(git diff --cached --name-only)
 
 if echo "$CHANGED_FILES" | grep -qE '^src/'; then
-    echo "Changes in 'src' directory detected."
+    echo "${YELLOW}Changes in 'src' directory detected.${RESET}"
 
-    echo "Running formatted and build..."
+    echo "${GREEN}[|] Running formatted and build...${RESET}"
     pnpm format
     pnpm build
-    echo "Success formatted and build!"
+    echo "[+] Success formatted and build!"
 
-    echo "Remove files to preview..."
+    echo "${GREEN}[|] Remove files to preview...${RESET}"
     # Удаляем старый файл из preview/
     rm -f ./preview/vision.bundle.js
     rm -f ./preview/vision.css
-    echo "Success remove files to preview!"
+    echo "[+] Success remove files to preview!"
 
-    echo "Copy files dist/ -> preview/ ..."
+    echo "${GREEN}[|] Copy files dist/ -> preview/ ...${RESET}"
     # Копируем новый файл из dist/ в preview/
     cp ./dist/vision.bundle.js ./preview/
     cp ./dist/vision.css ./preview/
-    echo "Success copy files!"
+    echo "[+] Success copy files!"
 
-    echo "Send files to branch main -> preview ..."
+    echo "${GREEN}[+] Send files to branch main -> preview ...${RESET}"
     # Отправляем изменения в папку preview на удаленный репозиторий
 else
-    echo "No changes in 'src' directory. Skipping actions."
+    echo "${YELLOW}No changes in 'src' directory. Skipping actions.${RESET}"
 fi
 
-echo "Husky is successfully!"
+echo "${YELLOW}Husky is successfully!${RESET}"
