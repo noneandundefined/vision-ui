@@ -3,21 +3,30 @@ set -e
 
 echo "Running pre-commit hook..."
 
-echo "Running formatted and build..."
-pnpm format
-pnpm build
-echo "Success formatted and build!"
+# Получаем список измененных файлов
+CHANGED_FILES=$(git diff --cached --name-only)
 
-echo "Remove files to preview..."
-# Удаляем старый файл из preview/
-rm -f ./preview/vision.bundle.js
-rm -f ./preview/vision.css
-echo "Success remove files to preview!"
+if echo "$CHANGED_FILES" | grep -qE '^src/'; then
+    echo "Changes in 'src' directory detected."
 
-echo "Copy files dist/ -> preview/ ..."
-# Копируем новый файл из dist/ в preview/
-cp ./dist/vision.bundle.js ./preview/
-cp ./dist/vision.css ./preview/
-echo "Success copy files!"
+    echo "Running formatted and build..."
+    pnpm format
+    pnpm build
+    echo "Success formatted and build!"
+
+    echo "Remove files to preview..."
+    # Удаляем старый файл из preview/
+    rm -f ./preview/vision.bundle.js
+    rm -f ./preview/vision.css
+    echo "Success remove files to preview!"
+
+    echo "Copy files dist/ -> preview/ ..."
+    # Копируем новый файл из dist/ в preview/
+    cp ./dist/vision.bundle.js ./preview/
+    cp ./dist/vision.css ./preview/
+    echo "Success copy files!"
+else
+    echo "No changes in 'src' directory. Skipping actions."
+fi
 
 echo "Husky is successfully!"
