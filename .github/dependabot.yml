@@ -1,0 +1,15 @@
+version: 2
+updates:
+    - package-ecosystem: 'npm'
+      directory: '/'
+      schedule:
+          interval: 'daily'
+          time: '23:00'
+      commit-message:
+          prefix: 'chore'
+          include: 'scope'
+      open-pull-requests-limit: 10
+      ignore:
+          - dependency-name: 'tailwindcss'
+          - dependency-name: 'postcss'
+          - dependency-name: 'react-router-dom'
