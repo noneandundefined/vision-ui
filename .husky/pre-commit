@@ -1,0 +1,17 @@
+#!/bin/sh
+set -e
+
+echo "Running pre-commit hook..."
+
+pnpm format
+pnpm build
+
+# Удаляем старый файл из preview/
+rm -f ../preview/vision.bundle.js
+rm -f ../preview/vision.css
+
+# Копируем новый файл из dist/ в preview/
+cp ../dist/vision.bundle.js ../preview/
+cp ../dist/vision.css ../preview/
+
+echo "File copied successfully!"
