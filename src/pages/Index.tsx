@@ -51,8 +51,9 @@ const Index = () => {
 				let response = await monitoringService.fetchMonitoringData();
 
 				if (!response) {
-					response = await monitoringService.fetchMonitoringDataFile();
-					console.log(response)
+					response =
+						await monitoringService.fetchMonitoringDataFile();
+					console.log(response);
 				}
 
 				setMonitoringData(response);
