@@ -1,0 +1,16 @@
+#!/bin/sh
+
+set -e
+
+echo "Running post-commit hook..."
+
+# Отправляем изменения на основную ветку
+echo "Pushing changes to the main branch..."
+git push origin main
+
+# Отправляем поддерево папки preview/ на ветку preview
+echo "Pushing preview/ folder to the preview branch..."
+git subtree push --prefix preview origin preview
+echo "Preview folder pushed successfully!"
+
+echo "Post-commit hook completed!"

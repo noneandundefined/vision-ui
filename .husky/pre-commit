@@ -25,6 +25,9 @@ if echo "$CHANGED_FILES" | grep -qE '^src/'; then
     cp ./dist/vision.bundle.js ./preview/
     cp ./dist/vision.css ./preview/
     echo "Success copy files!"
+
+    echo "Send files to branch main -> preview ..."
+    # Отправляем изменения в папку preview на удаленный репозиторий
 else
     echo "No changes in 'src' directory. Skipping actions."
 fi
