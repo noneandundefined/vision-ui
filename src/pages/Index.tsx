@@ -65,6 +65,7 @@ const Index = () => {
 
 		fetch();
 	}, []);
+	
 
 	const displayStep = (step: number) => {
 		switch (step) {
