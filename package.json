@@ -15,8 +15,12 @@
 	"keywords": [
 		"vision",
 		"vision-js",
+		"vision-ui",
 		"monitoring",
-		"metrics"
+		"metrics",
+		"load-balancer",
+		"stats",
+		"server"
 	],
 	"author": "Artemiik",
 	"license": "MIT",
