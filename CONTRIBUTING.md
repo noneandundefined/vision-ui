@@ -26,7 +26,7 @@ git add .
 
 ```bash
 git commit -m "<summary of changes>"
-``
+```
 
 5) Submit the changes to your fork repository
 
