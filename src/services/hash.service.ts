@@ -1,5 +1,5 @@
 class HashService {
-	private static hash(input: string): string {
+	private hash(input: string): string {
 		let hash = 5381;
 		const len = input.length;
 
@@ -18,7 +18,7 @@ class HashService {
 		return Math.abs(hash).toString(36);
 	}
 
-	public static getHash(str: string): string {
+	public getHash(str: string): string {
         return this.hash(str);
 	}
 }
