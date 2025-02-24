@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Effects from '../components/Effects';
 import Header from '../components/Header';
 import Cancel from '../constants/svgs/cancel';
@@ -37,7 +37,7 @@ const panel_list = [
 	},
 ];
 
-const Index = () => {
+const Index: () => React.JSX.Element = () => {
 	const [isError, setIsError] = useState<boolean>(false);
 	const [responseError, setResponseError] = useState<string>('');
 	const [monitoringData, setMonitoringData] = useState<MonitoringType | null>(

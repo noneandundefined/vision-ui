@@ -16,12 +16,11 @@
 		/* Linting */
 		"strict": true,
 		"noUnusedLocals": true,
-		"esModuleInterop": true,
 		"noUnusedParameters": true,
 		"noFallthroughCasesInSwitch": true,
 		"noUncheckedSideEffectImports": true,
-		"forceConsistentCasingInFileNames": true
+		"types": ["vitest/globals"]
 	},
-	"include": ["src/**/*", "test/**/*"],
+	"include": ["src", "test/vitest.setup.ts"],
 	"exclude": ["node_modules"]
 }

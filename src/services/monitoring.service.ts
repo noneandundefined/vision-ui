@@ -34,12 +34,10 @@ class MonitoringSerivce {
 				if (error.response) {
 					throw new Error(error.response.data.message);
 				} else if (error.request) {
-					throw new Error('Ошибка при отправки запроса.');
+					throw new Error('Error when sending the request.');
 				}
 			} else {
-				throw new Error(
-					'Произошла ошибка. Пожалуйста, попробуйте снова.'
-				);
+				throw new Error('An error has occurred. Please try again.');
 			}
 
 			return null;

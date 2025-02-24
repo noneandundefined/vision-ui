@@ -8,9 +8,6 @@ YELLOW="\033[33m"
 GREEN="\033[32m"
 RESET="\033[0m"
 
-# Отправляем изменения на основную ветку
-echo "${GREEN} [|] Pushing changes to the main branch...${RESET}"
-git push origin main
 
 # Отправляем поддерево папки preview/ на ветку preview
 echo "${GREEN}[|] Pushing preview/ folder to the preview branch...${RESET}"
