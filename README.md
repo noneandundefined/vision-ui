@@ -54,3 +54,4 @@ The current and current versions of Vision UI are listed in the table, choose th
 ## Security contact
 
 Please disclose any security-related issues or vulnerabilities by emailing [vision@gmail.com](mailto:vision@gmail.com), instead of using the public issue tracker.
+
