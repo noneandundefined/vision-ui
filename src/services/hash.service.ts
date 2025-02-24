@@ -14,12 +14,11 @@ class HashService {
 		hash = ((hash >>> 0) * 0x5bd1e995) | 0;
 		hash ^= hash >>> 16;
 
-
 		return Math.abs(hash).toString(36);
 	}
 
 	public getHash(str: string): string {
-        return this.hash(str);
+		return this.hash(str);
 	}
 }
 
