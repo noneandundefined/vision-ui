@@ -5,8 +5,8 @@
 </p>
 </br>
 <p align="center">
-  <a href="https://github.com/Artymiik/vision/actions/workflows/compiler-client.yml"><img src="https://github.com/Artymiik/vision/actions/workflows/compiler-client.yml/badge.svg" alt="Compiler and Build"></a>
-  <a href="https://github.com/Artymiik/vision/actions/workflows/global-index.yml"><img src="https://github.com/Artymiik/vision/actions/workflows/global-index.yml/badge.svg" alt="Build and Test"></a>
+  <a href="https://github.com/noneandundefined/vision/actions/workflows/compiler-client.yml"><img src="https://github.com/noneandundefined/vision/actions/workflows/compiler-client.yml/badge.svg" alt="Compiler and Build"></a>
+  <a href="https://github.com/noneandundefined/vision/actions/workflows/global-index.yml"><img src="https://github.com/noneandundefined/vision/actions/workflows/global-index.yml/badge.svg" alt="Build and Test"></a>
   <a href="https://github.com/noneandundefined/vision-ui/actions/workflows/pages/pages-build-deployment"><img src="https://github.com/noneandundefined/vision-ui/actions/workflows/pages/pages-build-deployment/badge.svg" alt="pages-build-deployment"></a>
 </p>
 <p align="center">
@@ -24,7 +24,7 @@ The current and current versions of Vision UI are listed in the table, choose th
 
 | Vision Version | Release Date | Notes                                                           |
 | -------------- | ------------ | --------------------------------------------------------------- |
-| 1.0.0          | 2025-02-16   | [tag v1.0.0](https://github.com/Artymiik/vision-ui/tree/v1.0.0) |
+| 1.0.0          | 2025-02-16   | [tag v1.0.0](https://github.com/noneandundefined/vision-ui/tree/v1.0.0) |
 
 ## Basic functionality
 
@@ -54,4 +54,3 @@ The current and current versions of Vision UI are listed in the table, choose th
 ## Security contact
 
 Please disclose any security-related issues or vulnerabilities by emailing [vision@gmail.com](mailto:vision@gmail.com), instead of using the public issue tracker.
-
