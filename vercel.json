@@ -1,3 +1,14 @@
 {
-	"rewrites": [{ "source": "/(.*)", "destination": "/preview/index.html" }]
+	"builds": [
+		{
+			"src": "preview/**/*",
+			"use": "@vercel/static"
+		}
+	],
+	"routes": [
+		{
+			"src": "/(.*)",
+			"dest": "/preview/$1"
+		}
+	]
 }
