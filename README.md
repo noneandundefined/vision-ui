@@ -18,10 +18,10 @@
 
 Vision allows any user, whether it's your development team, to visually look at the server in operational mode. Be aware of all errors, server response time, CPU usage, and RAM. Use ready-made functions thanks to libraries for different programming languages, see below. Look at the Vision!
 
-✅ Server errors & logs
-✅ Response time monitoring
-✅ CPU & RAM usage
-✅ Load testing
+✅ Server errors & logs <br>
+✅ Response time monitoring <br>
+✅ CPU & RAM usage <br>
+✅ Load testing <br>
 
 ```html
 <!-- HTML for dev server -->
@@ -90,10 +90,11 @@ The current and current versions of Vision UI are listed in the table, choose th
 
 ## Basic meta functionality
 
-| Meta Tag | Description |
-|monitoring-url|An tag containing a link to the json monitoring data of your server|
-|authenticate|The tag that determines whether your server needs authentication before using the Vision UI|
-|monitoring-file|An tag containing a link to the json monitoring file of your server|
+| Meta Tag         | Description                                                                                 |
+| ---------------- | ------------------------------------------------------------------------------------------- |
+| monitoring-url   | An tag containing a link to the json monitoring data of your server                         |
+| authenticate     | The tag that determines whether your server needs authentication before using the Vision UI |
+| monitoring-file  | An tag containing a link to the json monitoring file of your server                         |
 
 ## Documentation
 
