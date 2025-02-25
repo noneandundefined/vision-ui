@@ -14,30 +14,86 @@
   <a href="https://www.npmjs.com/package/@artemiik/vision-ui"><img src="https://img.shields.io/npm/dm/%40artemiik%2Fvision-ui" alt="Compiler and Build"></a>
 </p>
 
-## Introduction
+## ✨ Introduction
 
 Vision allows any user, whether it's your development team, to visually look at the server in operational mode. Be aware of all errors, server response time, CPU usage, and RAM. Use ready-made functions thanks to libraries for different programming languages, see below. Look at the Vision!
+
+✅ Server errors & logs
+✅ Response time monitoring
+✅ CPU & RAM usage
+✅ Load testing
+
+```html
+<!-- HTML for dev server -->
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<link
+			rel="icon"
+			type="image/svg+xml"
+			href="https://raw.githubusercontent.com/noneandundefined/vision-ui/refs/heads/main/public/logo-vision-none.png"
+		/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta
+			name="description"
+			content="Keep up to date with what is happening on your server using - Vision"
+		/>
+
+		<!-- Stylization and actions -->
+		<script
+			type="module"
+			src="https://unpkg.com/@artemiik/vision-ui@1.0.2/dist/vision.bundle.js"
+			defer
+		></script>
+		<link
+			rel="stylesheet"
+			href="https://unpkg.com/@artemiik/vision-ui@1.0.2/dist/vision.css"
+		/>
+
+		<title>Look at the Vision!</title>
+
+		<!-- Defining a meta tag for the monitoring URL -->
+		<!-- Thanks to this meta tag, Vision will take server monitoring -->
+		<meta
+			name="monitoring-url"
+			content="http://localhost:8001/micro/user/admin/vision/stats"
+		/>
+
+		<!-- Meta tag for using authentication on Vision UI -->
+		<!-- Thanks to this meta tag, Vision will block access to your Vision UI monitoring until the correct password is entered -->
+		<!-- You can remove it or leave it  -->
+		<meta name="authenticate" content="password_hash" />
+	</head>
+	<body>
+		<!--
+			This HTML file is a template.
+
+			Vision allows any user, whether it's your development team,
+			to visually look at the server in production mode.
+
+			Be aware of all errors, server response time, CPU and RAM load.
+			Look at the Vision!
+		-->
+		<div id="vision"></div>
+	</body>
+</html>
+```
 
 ## Versions
 
 The current and current versions of Vision UI are listed in the table, choose the one that suits you and start watching the server.
 
-| Vision Version | Release Date | Notes                                                             |
-| -------------- | ------------ | ----------------------------------------------------------------- |
+| Vision Version | Release Date | Notes                                                                   |
+| -------------- | ------------ | ----------------------------------------------------------------------- |
 | 1.0.0          | 2025-02-16   | [tag v1.0.0](https://github.com/noneandundefined/vision-ui/tree/v1.0.0) |
 
-## Basic functionality
+## Basic meta functionality
 
-| Function Name   | Access  | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| --------------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| VisionRequest   | Public  | The VisionRequest function takes the duration of the request and updates the statistics of requests to the server. It increases the counter of the total number of requests (RequestCount) and adds the transmitted duration to the total delay time of all requests (TotalLatency), ensuring that these values are securely updated using a mutex lock (Lock/Unlock) to avoid conflicts when accessing statistics from different execution threads.                        |
-| VisionError     | Public  | The VisionError function accepts an err error object and performs the following actions: locks the mutex for secure access to the fields of the stats structure, increments the error count counter, creates an error log containing the current time (Timestamp) and error message (Error), checks the length of the array of recent errors (LastErrors) and, if it contains more than 10 elements, it deletes the oldest element, and then adds a new error to the array. |
-| VisionDBQuery   | Public  | The VisionDBQuery function takes the duration of a database query and updates the corresponding statistics by incrementing the database query counter (DBQueryCount) and adding the transmitted duration to the total amount of database query delays (DBTotalLatency)                                                                                                                                                                                                      |
-| VisionDBError   | Public  | The VisionDBError function increments the database error counter (DBErrorCount) when an error occurs.                                                                                                                                                                                                                                                                                                                                                                       |
-| getCPUUsage     | Private | The getCPUUsage function tries to get the percentage of CPU usage for the last second.                                                                                                                                                                                                                                                                                                                                                                                      |
-| getMemoryUsage  | Private | The getMemoryUsage function gets information about virtual memory usage.                                                                                                                                                                                                                                                                                                                                                                                                    |
-| getNetworkStats | Private | The getNetworkStats function collects network interface statistics. If the network data cannot be retrieved, an error is returned. If the interface is found, the amount of data received in megabytes is calculated and the result is returned.                                                                                                                                                                                                                            |
-| GetVisionStats  | Public  | The GetVisionStats function collects all the data into one structure and outputs it as a JSON structure.                                                                                                                                                                                                                                                                                                                                                                    |
+| Meta Tag | Description |
+|monitoring-url|An tag containing a link to the json monitoring data of your server|
+|authenticate|The tag that determines whether your server needs authentication before using the Vision UI|
+|monitoring-file|An tag containing a link to the json monitoring file of your server|
 
 ## Documentation
 
@@ -50,6 +106,10 @@ The current and current versions of Vision UI are listed in the table, choose th
 - [Go](https://github.com/noneandundefined/vision-go)
 - [JavaScript](https://github.com/noneandundefined/vision-npm)
 - [TypeScript](https://github.com/noneandundefined/vision-npm)
+
+## Contributing
+
+Refer to our [contribution guidelines](https://github.com/noneandundefined/vision-ui/blob/main/CONTRIBUTING.md) and [Code of Conduct for contributors](https://github.com/noneandundefined/vision-ui/blob/main/CODE_OF_CONDUCT.md).
 
 ## Security contact
 
