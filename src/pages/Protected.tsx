@@ -10,6 +10,48 @@ interface ProtectedProps {
 	setResponseError: any;
 }
 
+const CodeInput: React.FC<{
+	code: string[];
+	setCode: (newCode: string[]) => void;
+	onComplete: () => void;
+}> = ({ code, setCode, onComplete }) => {
+	const handleChange = (index: number, event: any) => {
+		const newCode = [...code];
+		newCode[index] = event.target.value.slice(-1);
+
+		if (event.nativeEvent.inputType === 'deleteContentBackward' && index > 0) {
+			document.getElementById(`code-${index - 1}`)?.focus();
+		} else if (event.target.value && index < 4) {
+			document.getElementById(`code-${index + 1}`)?.focus();
+		}
+
+		setCode(newCode);
+
+		if (newCode.every((char) => char)) {
+			onComplete();
+		}
+	};
+
+	return (
+		<div className="flex gap-2 justify-center">
+			{code.map((_, index) => (
+				<input
+					type="text"
+					key={index}
+					id={`code-${index}`}
+					maxLength={1}
+					value={code[index]}
+					onChange={(e) => handleChange(index, e)}
+					className={`max-w-[2.2rem] min-h-[2.8rem] text-[#fff] items-center text-center rounded-[0.6rem] border bg-[#181b2f8f] font-semibold`}
+					style={{
+						borderColor: code[index] ? '#3f9f75' : '#9f3f3f',
+					}}
+				/>
+			))}
+		</div>
+	);
+};
+
 const Protected: React.FC<ProtectedProps> = ({
 	setIsError,
 	setResponseError,
@@ -17,19 +59,13 @@ const Protected: React.FC<ProtectedProps> = ({
 	const [code, setCode] = useState(['', '', '', '', '']);
 	const [isModal, setIsModal] = useState<boolean>(false);
 
-	const handleChange = (index: number, event: any) => {
-		const newCode = [...code];
-		newCode[index] = event.target.value.slice(-1);
-
-		if (event.nativeEvent.inputType === 'deleteContentBackward') {
-			if (index > 0) {
-				document.getElementById(`code-${index - 1}`)?.focus();
-			}
-		} else if (event.target.value && index < 5) {
-			document.getElementById(`code-${index + 1}`)?.focus();
+	const handleVerifyCode = () => {
+		try {
+			authService.login(code.join(''));
+		} catch (error: any) {
+			setIsError(true);
+			setResponseError(error.message);
 		}
-
-		setCode(newCode);
 	};
 
 	return (
@@ -53,24 +89,7 @@ const Protected: React.FC<ProtectedProps> = ({
 							Verify your identitiy
 						</p>
 
-						<div className="flex gap-2 justify-center">
-							{[...Array(5)].map((_, index) => (
-								<input
-									type="text"
-									key={index}
-									id={`code-${index}`}
-									maxLength={1}
-									value={code[index]}
-									onChange={(e) => handleChange(index, e)}
-									className={`max-w-[2.2rem] min-h-[2.8rem] text-[#fff] items-center text-center rounded-[0.6rem] border bg-[#181b2f8f] font-semibold`}
-									style={{
-										borderColor: code[index]
-											? '#3f9f75'
-											: '#9f3f3f',
-									}}
-								/>
-							))}
-						</div>
+						<CodeInput code={code} setCode={setCode} onComplete={handleVerifyCode} />
 
 						<div className="flex items-center justify-center gap-3 mt-[1.5rem] text-[14px]">
 							<p className="cursor-pointer hover:text-[#fff]">
@@ -78,14 +97,7 @@ const Protected: React.FC<ProtectedProps> = ({
 							</p>
 							<p
 								className="bg-[#3c3d488f] p-1 px-[0.7rem] rounded-md cursor-pointer hover:text-[#fff]"
-								onClick={() => {
-									try {
-										authService.login(code.join(''));
-									} catch (error: any) {
-										setIsError(true);
-										setResponseError(error.message);
-									}
-								}}
+								onClick={handleVerifyCode}
 							>
 								Verify Code
 							</p>
@@ -110,20 +122,20 @@ const PaswdModal: React.FC<{ setIsModal: any }> = ({ setIsModal }) => {
 	const [paswd, setPaswd] = useState<string>('');
 	const [paswdLabel, setPaswdLabel] = useState<string>('Enter the password');
 
-	const handleChange = (index: number, event: any) => {
-		const newCode = [...code];
-		newCode[index] = event.target.value.slice(-1);
+	// const handleChange = (index: number, event: any) => {
+	// 	const newCode = [...code];
+	// 	newCode[index] = event.target.value.slice(-1);
 
-		if (event.nativeEvent.inputType === 'deleteContentBackward') {
-			if (index > 0) {
-				document.getElementById(`code-${index - 1}`)?.focus();
-			}
-		} else if (event.target.value && index < 5) {
-			document.getElementById(`code-${index + 1}`)?.focus();
-		}
+	// 	if (event.nativeEvent.inputType === 'deleteContentBackward') {
+	// 		if (index > 0) {
+	// 			document.getElementById(`code-${index - 1}`)?.focus();
+	// 		}
+	// 	} else if (event.target.value && index < 5) {
+	// 		document.getElementById(`code-${index + 1}`)?.focus();
+	// 	}
 
-		setCode(newCode);
-	};
+	// 	setCode(newCode);
+	// };
 
 	return (
 		<>
@@ -144,24 +156,10 @@ const PaswdModal: React.FC<{ setIsModal: any }> = ({ setIsModal }) => {
 						</p>
 
 						{paswd == '' ? (
-							<div className="flex gap-2 justify-center">
-								{[...Array(5)].map((_, index) => (
-									<input
-										type="text"
-										key={index}
-										id={`code-${index}`}
-										maxLength={1}
-										value={code[index]}
-										onChange={(e) => handleChange(index, e)}
-										className={`max-w-[2.2rem] min-h-[2.8rem] text-[#fff] items-center text-center rounded-[0.6rem] border bg-[#181b2f8f] font-semibold`}
-										style={{
-											borderColor: code[index]
-												? '#3f9f75'
-												: '#9f3f3f',
-										}}
-									/>
-								))}
-							</div>
+							<CodeInput code={code} setCode={setCode} onComplete={() => {
+								setPaswd(hashService.getHash(code.join('')));
+								setPaswdLabel('Your hash:');
+							}} />
 						) : (
 							<p className="text-[1.7rem] tracking-[0.5rem] font-medium">
 								{paswd}

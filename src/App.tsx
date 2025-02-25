@@ -37,6 +37,18 @@ const App = () => {
 		fetch();
 	}, []);
 
+	const renderGlobalContent = () => {
+		if (isError) {
+			return <MessageBox status={500} message={responseError} setIsError={setIsError} />;
+		}
+
+		if (!monitoringData) {
+			return <Skeleton />;
+		}
+
+		return <Index data={monitoringData} />;
+	};
+
 	return (
 		<>
 			{isError && (
@@ -50,13 +62,7 @@ const App = () => {
 			{isAuth ? (
 				<>
 					{isCookie ? (
-						<>
-							{!monitoringData ? (
-								<Skeleton />
-							) : (
-								<Index data={monitoringData} />
-							)}
-						</>
+						renderGlobalContent()
 					) : (
 						<Protected
 							setIsError={setIsError}
@@ -65,13 +71,7 @@ const App = () => {
 					)}
 				</>
 			) : (
-				<>
-					{!monitoringData ? (
-						<Skeleton />
-					) : (
-						<Index data={monitoringData} />
-					)}
-				</>
+				renderGlobalContent()
 			)}
 		</>
 	);
