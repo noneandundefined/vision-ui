@@ -9,6 +9,7 @@ import Protected from './pages/Protected';
 
 const App = () => {
 	const isAuth = authService.isMetaAuth();
+	const isCookie = authService.isAuthenticate();
 	const [isError, setIsError] = useState<boolean>(false);
 	const [responseError, setResponseError] = useState<string>('');
 	const [monitoringData, setMonitoringData] = useState<MonitoringType | null>(
@@ -47,7 +48,19 @@ const App = () => {
 			)}
 
 			{isAuth ? (
-				<Protected />
+				<>
+					{isCookie ? (
+						<>
+							{!monitoringData ? (
+								<Skeleton />
+							) : (
+								<Index data={monitoringData} />
+							)}
+						</>
+					) : (
+						<Protected setIsError={setIsError} setResponseError={setResponseError} />
+					)}
+				</>
 			) : (
 				<>
 					{!monitoringData ? (
@@ -58,7 +71,7 @@ const App = () => {
 				</>
 			)}
 		</>
-	)
+	);
 };
 
 export default App;

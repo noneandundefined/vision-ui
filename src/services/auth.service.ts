@@ -35,7 +35,7 @@ class AuthService {
 			throw new Error('Invalid password');
 		}
 
-		Cookies.set('oauth', '');
+		Cookies.set('oauth', 'authorized');
 		return 'Welcome to the vision UI panel!';
 	}
 

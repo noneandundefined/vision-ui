@@ -59,6 +59,7 @@ const Index: React.FC<{ data: MonitoringType }> = ({ data }) => {
 	return (
 		<>
 			<Effects />
+
 			<div>
 				<Header />
 
