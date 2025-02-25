@@ -23,7 +23,7 @@
 		"server"
 	],
 	"author": "Artemiik",
-	"license": "MIT",
+	"license": "Apache-2.0 license",
 	"scripts": {
 		"dev": "vite",
 		"test": "vitest",
@@ -80,5 +80,3 @@
 		"vitest": "^3.0.6"
 	}
 }
-
-
