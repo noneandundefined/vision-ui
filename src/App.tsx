@@ -58,7 +58,10 @@ const App = () => {
 							)}
 						</>
 					) : (
-						<Protected setIsError={setIsError} setResponseError={setResponseError} />
+						<Protected
+							setIsError={setIsError}
+							setResponseError={setResponseError}
+						/>
 					)}
 				</>
 			) : (
