@@ -4,6 +4,7 @@ import Close from '../constants/svgs/close';
 import LockReset from '../constants/svgs/lock-reset';
 import hashService from '../services/hash.service';
 import authService from '../services/auth.service';
+import Copy from '../constants/svgs/content-copy';
 
 interface ProtectedProps {
 	setIsError: any;
@@ -19,7 +20,10 @@ const CodeInput: React.FC<{
 		const newCode = [...code];
 		newCode[index] = event.target.value.slice(-1);
 
-		if (event.nativeEvent.inputType === 'deleteContentBackward' && index > 0) {
+		if (
+			event.nativeEvent.inputType === 'deleteContentBackward' &&
+			index > 0
+		) {
 			document.getElementById(`code-${index - 1}`)?.focus();
 		} else if (event.target.value && index < 4) {
 			document.getElementById(`code-${index + 1}`)?.focus();
@@ -59,9 +63,9 @@ const Protected: React.FC<ProtectedProps> = ({
 	const [code, setCode] = useState(['', '', '', '', '']);
 	const [isModal, setIsModal] = useState<boolean>(false);
 
-	const handleVerifyCode = () => {
+	const handleVerifyCode = async () => {
 		try {
-			authService.login(code.join(''));
+			await authService.login(code.join(''));
 		} catch (error: any) {
 			setIsError(true);
 			setResponseError(error.message);
@@ -89,7 +93,11 @@ const Protected: React.FC<ProtectedProps> = ({
 							Verify your identitiy
 						</p>
 
-						<CodeInput code={code} setCode={setCode} onComplete={handleVerifyCode} />
+						<CodeInput
+							code={code}
+							setCode={setCode}
+							onComplete={handleVerifyCode}
+						/>
 
 						<div className="flex items-center justify-center gap-3 mt-[1.5rem] text-[14px]">
 							<p className="cursor-pointer hover:text-[#fff]">
@@ -122,21 +130,6 @@ const PaswdModal: React.FC<{ setIsModal: any }> = ({ setIsModal }) => {
 	const [paswd, setPaswd] = useState<string>('');
 	const [paswdLabel, setPaswdLabel] = useState<string>('Enter the password');
 
-	// const handleChange = (index: number, event: any) => {
-	// 	const newCode = [...code];
-	// 	newCode[index] = event.target.value.slice(-1);
-
-	// 	if (event.nativeEvent.inputType === 'deleteContentBackward') {
-	// 		if (index > 0) {
-	// 			document.getElementById(`code-${index - 1}`)?.focus();
-	// 		}
-	// 	} else if (event.target.value && index < 5) {
-	// 		document.getElementById(`code-${index + 1}`)?.focus();
-	// 	}
-
-	// 	setCode(newCode);
-	// };
-
 	return (
 		<>
 			<div className="fixed top-0 left-0 z-[1000] w-screen h-screen bg-[#00000c]">
@@ -156,14 +149,27 @@ const PaswdModal: React.FC<{ setIsModal: any }> = ({ setIsModal }) => {
 						</p>
 
 						{paswd == '' ? (
-							<CodeInput code={code} setCode={setCode} onComplete={() => {
-								setPaswd(hashService.getHash(code.join('')));
-								setPaswdLabel('Your hash:');
-							}} />
+							<CodeInput
+								code={code}
+								setCode={setCode}
+								onComplete={async () => {
+									setPaswd(
+										await hashService.getHash(code.join(''))
+									);
+									setPaswdLabel('Your hash:');
+								}}
+							/>
 						) : (
-							<p className="text-[1.7rem] tracking-[0.5rem] font-medium">
-								{paswd}
-							</p>
+							<div className="flex items-center justify-center gap-4">
+								<p className="text-[1.7rem] font-medium">
+									{paswd.substring(0, 10) + '...'}
+								</p>
+								<button className="active:motion-preset-confetti motion-duration-600">
+									<Copy fill='#fff' size={25} className="bg-[transition] cursor-pointer hover:bg-[#222] p-1 rounded" onClick={async () => {
+										await navigator.clipboard.writeText(paswd);
+									}} />
+								</button>
+							</div>
 						)}
 
 						<div className="flex items-center justify-center gap-3 mt-[1.5rem] text-[14px]">
@@ -175,9 +181,9 @@ const PaswdModal: React.FC<{ setIsModal: any }> = ({ setIsModal }) => {
 							</p>
 							<p
 								className="bg-[#3c3d488f] p-1 px-[0.7rem] rounded-md cursor-pointer hover:text-[#fff]"
-								onClick={() => {
+								onClick={async () => {
 									setPaswd(
-										hashService.getHash(code.join(''))
+										await hashService.getHash(code.join(''))
 									);
 									setPaswdLabel('Your hash:');
 								}}

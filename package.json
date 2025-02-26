@@ -46,6 +46,7 @@
 		"react": "^19.0.0",
 		"react-dom": "^19.0.0",
 		"react-router-dom": "^7.1.5",
+		"tailwindcss-motion": "^1.1.0",
 		"vite": "^6.2.0"
 	},
 	"devDependencies": {

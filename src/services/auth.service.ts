@@ -24,14 +24,20 @@ class AuthService {
 		return false;
 	}
 
-	public login(password: string): string {
+	public async login(password: string): Promise<string> {
 		const auth = this.isMetaAuthenticate();
+
+		const [salt, hash] = auth.split('.');
+		if (!salt || !hash) {
+			throw new Error('Invalid password');
+		}
 
 		if (!password) {
 			throw new Error('Password not found or empty');
 		}
 
-		if (auth !== hashService.getHash(password)) {
+		const newHash = await hashService.getHash(password);
+		if (auth !== newHash) {
 			throw new Error('Invalid password');
 		}
 
@@ -39,7 +45,7 @@ class AuthService {
 		return 'Welcome to the vision UI panel!';
 	}
 
-	public register(password: string): string {
+	public async register(password: string): Promise<string> {
 		if (!password) {
 			throw new Error('Password not found or empty');
 		}
