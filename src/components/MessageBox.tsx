@@ -29,7 +29,11 @@ const MessageBox: React.FC<MessageBoxProps> = ({
 			<div className="fixed bottom-7 right-5">
 				{statusCode.startsWith('4') ? (
 					<div className="flex gap-3 px-8 bg-[#161616] py-[0.7rem] px-[1.2rem] pr-[3rem] rounded-xl border border-[#444]">
-						<Cancel fill="#ff0000" size={21} className="mt-[0.2rem]" />
+						<Cancel
+							fill="#ff0000"
+							size={21}
+							className="mt-[0.2rem]"
+						/>
 						<div>
 							<p className="text-[#fff]">Error</p>
 							<p className="text-[#888] text-[14px]">{message}</p>
@@ -37,7 +41,11 @@ const MessageBox: React.FC<MessageBoxProps> = ({
 					</div>
 				) : statusCode.startsWith('5') ? (
 					<div className="flex gap-3 px-8 bg-[#161616] py-[0.7rem] px-[1.2rem] pr-[3rem] rounded-xl border border-[#444]">
-						<Cancel fill="#ff0000" size={21} className="mt-[0.2rem]" />
+						<Cancel
+							fill="#ff0000"
+							size={21}
+							className="mt-[0.2rem]"
+						/>
 						<div>
 							<p className="text-[#fff]">Error</p>
 							<p className="text-[#888] text-[14px]">{message}</p>
@@ -45,7 +53,11 @@ const MessageBox: React.FC<MessageBoxProps> = ({
 					</div>
 				) : statusCode.startsWith('1') ? (
 					<div className="flex gap-3 px-8 bg-[#161616] py-[0.7rem] px-[1.2rem] pr-[3rem] rounded-xl border border-[#444]">
-						<Close fill="#ffe400" size={21} className="mt-[0.2rem]" />
+						<Close
+							fill="#ffe400"
+							size={21}
+							className="mt-[0.2rem]"
+						/>
 						<div>
 							<p className="text-[#fff]">Warning</p>
 							<p className="text-[#888] text-[14px]">{message}</p>
@@ -53,7 +65,11 @@ const MessageBox: React.FC<MessageBoxProps> = ({
 					</div>
 				) : (
 					<div className="flex gap-3 px-8 bg-[#161616] py-[0.7rem] px-[1.2rem] pr-[3rem] rounded-xl border border-[#444]">
-						<Done fill="#2fff00" size={21} className="mt-[0.2rem]" />
+						<Done
+							fill="#2fff00"
+							size={21}
+							className="mt-[0.2rem]"
+						/>
 						<div>
 							<p className="text-[#fff]">Success</p>
 							<p className="text-[#888] text-[14px]">{message}</p>

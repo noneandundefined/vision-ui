@@ -12,7 +12,7 @@ interface ServerLoadProps {
 const ServerLoad: React.FC<ServerLoadProps> = ({ data }) => {
 	return (
 		<>
-			<div className="flex items-center gap-3">
+			<div className="flex items-center gap-3 server__load">
 				{data?.memory_usage && (
 					<div className="bg-[#ffffff21] p-3">
 						<div className="flex">
@@ -47,7 +47,7 @@ const ServerLoad: React.FC<ServerLoadProps> = ({ data }) => {
 
 									<div className="absolute top-[4rem] left-[4.2rem] transform -translate-y-1/2 -translate-x-1/2">
 										<span
-											className="text-center text-xl font-semibold"
+											className="text-center text-xl font-semibold server__load__memory"
 											style={{ color: '#ffe900' }}
 										>
 											{data?.memory_usage}%
@@ -106,7 +106,7 @@ const ServerLoad: React.FC<ServerLoadProps> = ({ data }) => {
 
 									<div className="absolute top-[4rem] left-[4.2rem] transform -translate-y-1/2 -translate-x-1/2">
 										<span
-											className="text-center text-xl font-semibold"
+											className="text-center text-xl font-semibold server__load__cpu"
 											style={{ color: '#00ff6e' }}
 										>
 											{data?.cpu_usage?.toFixed(2)}%
@@ -165,7 +165,7 @@ const ServerLoad: React.FC<ServerLoadProps> = ({ data }) => {
 
 									<div className="absolute top-[4rem] left-[4.2rem] transform -translate-y-1/2 -translate-x-1/2">
 										<span
-											className="text-center text-xl font-semibold"
+											className="text-center text-xl font-semibold server__load__network"
 											style={{ color: '#6100ff' }}
 										>
 											{(data?.network_recv / 100).toFixed(

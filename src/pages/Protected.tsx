@@ -165,9 +165,16 @@ const PaswdModal: React.FC<{ setIsModal: any }> = ({ setIsModal }) => {
 									{paswd.substring(0, 10) + '...'}
 								</p>
 								<button className="active:motion-preset-confetti motion-duration-600">
-									<Copy fill='#fff' size={25} className="bg-[transition] cursor-pointer hover:bg-[#222] p-1 rounded" onClick={async () => {
-										await navigator.clipboard.writeText(paswd);
-									}} />
+									<Copy
+										fill="#fff"
+										size={25}
+										className="bg-[transition] cursor-pointer hover:bg-[#222] p-1 rounded"
+										onClick={async () => {
+											await navigator.clipboard.writeText(
+												paswd
+											);
+										}}
+									/>
 								</button>
 							</div>
 						)}
