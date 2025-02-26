@@ -90,11 +90,11 @@ The current and current versions of Vision UI are listed in the table, choose th
 
 ## Basic meta functionality
 
-| Meta Tag         | Description                                                                                 |
-| ---------------- | ------------------------------------------------------------------------------------------- |
-| monitoring-url   | An tag containing a link to the json monitoring data of your server                         |
-| authenticate     | The tag that determines whether your server needs authentication before using the Vision UI |
-| monitoring-file  | An tag containing a link to the json monitoring file of your server                         |
+| Meta Tag        | Description                                                                                 |
+| --------------- | ------------------------------------------------------------------------------------------- |
+| monitoring-url  | An tag containing a link to the json monitoring data of your server                         |
+| authenticate    | The tag that determines whether your server needs authentication before using the Vision UI |
+| monitoring-file | An tag containing a link to the json monitoring file of your server                         |
 
 ## Documentation
 

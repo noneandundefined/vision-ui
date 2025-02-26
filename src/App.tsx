@@ -39,7 +39,13 @@ const App = () => {
 
 	const renderGlobalContent = () => {
 		if (isError) {
-			return <MessageBox status={500} message={responseError} setIsError={setIsError} />;
+			return (
+				<MessageBox
+					status={500}
+					message={responseError}
+					setIsError={setIsError}
+				/>
+			);
 		}
 
 		if (!monitoringData) {

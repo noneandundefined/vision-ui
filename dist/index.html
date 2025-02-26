@@ -5,7 +5,7 @@
 		<link
 			rel="icon"
 			type="image/svg+xml"
-			href="https://github.com/Artymiik/vision/blob/main/public/logo-vision-none.png?raw=true"
+			href="https://raw.githubusercontent.com/noneandundefined/vision-ui/refs/heads/main/public/logo-vision-none.png"
 		/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta
@@ -20,8 +20,12 @@
 			name="monitoring-url"
 			content="https://noneandundefined.github.io/vision-ui/vision.json"
 		/>
-		<!-- Defining a meta tag for authentication -->
-		<meta name="authenticate" content="kojtze" />
+
+		<!-- Meta tag for using authentication on Vision UI -->
+		<!-- Thanks to this meta tag, Vision will block access to your
+		 	 Vision UI monitoring until the correct password is entered -->
+		<!-- You can remove it or leave it  -->
+		<!-- <meta name="authenticate" content="hash_password" /> -->
 		<script type="module" crossorigin src="/vision.bundle.js"></script>
 		<link rel="stylesheet" crossorigin href="/vision.css">
 	</head>
@@ -35,6 +39,6 @@
 			Be aware of all errors, server response time, CPU and RAM load.
 			Look at the Vision!
 		-->
-		<div id="vision"></div>
+		<div id="vision"></div>
 	</body>
 </html>
