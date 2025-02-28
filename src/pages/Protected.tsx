@@ -18,18 +18,16 @@ const CodeInput: React.FC<{
 }> = ({ code, setCode, onComplete }) => {
 	const handleChange = (index: number, event: any) => {
 		const newCode = [...code];
-		newCode[index] = event.target.value.slice(-1);
-
-		if (
-			event.nativeEvent.inputType === 'deleteContentBackward' &&
-			index > 0
-		) {
-			document.getElementById(`code-${index - 1}`)?.focus();
-		} else if (event.target.value && index < 4) {
-			document.getElementById(`code-${index + 1}`)?.focus();
-		}
+		const value = event.target.value.slice(-1);
+		newCode[index] = value;
 
 		setCode(newCode);
+
+		if (value && index < code.length - 1) {
+			document.getElementById(`code-${index + 1}`)?.focus();
+		} else if (!value && index > 0) {
+			document.getElementById(`code-${index - 1}`)?.focus();
+		}
 
 		if (newCode.every((char) => char)) {
 			onComplete();
@@ -60,7 +58,7 @@ const Protected: React.FC<ProtectedProps> = ({
 	setIsError,
 	setResponseError,
 }) => {
-	const [code, setCode] = useState(['', '', '', '', '']);
+	const [code, setCode] = useState(['', '', '', '', '', '']);
 	const [isModal, setIsModal] = useState<boolean>(false);
 
 	const handleVerifyCode = async () => {
@@ -126,7 +124,7 @@ const Protected: React.FC<ProtectedProps> = ({
 };
 
 const PaswdModal: React.FC<{ setIsModal: any }> = ({ setIsModal }) => {
-	const [code, setCode] = useState(['', '', '', '', '']);
+	const [code, setCode] = useState(['', '', '', '', '', '']);
 	const [paswd, setPaswd] = useState<string>('');
 	const [paswdLabel, setPaswdLabel] = useState<string>('Enter the password');
 

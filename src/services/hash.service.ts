@@ -1,30 +1,37 @@
 class HashService {
 	private iterations: number;
 	private memoryCost: number;
-	private saltSize: number;
 
-	constructor(iterations = 50000, memoryCost = 1024 * 1024, saltSize = 16) {
+	constructor(iterations = 50000, memoryCost = 1024 * 1024) {
 		this.iterations = iterations;
 		this.memoryCost = memoryCost;
-		this.saltSize = saltSize;
 	}
 
 	// Генерация случайной соли
-	private generateSalt(): string {
-		const array = new Uint8Array(this.saltSize);
-		crypto.getRandomValues(array);
+	private async createSalt(): Promise<string> {
+		const hash = await crypto.subtle.digest(
+			'SHA-512',
+			new TextEncoder().encode(import.meta.env.VITE_SIGNATURE_VISION)
+		);
 
-		return Array.from(array, (byte) =>
-			byte.toString(16).padStart(2, '0')
-		).join('');
+		const salt = `VISION - ${Math.floor(Date.now() / 1000)}.[${hash}]`;
+		let hexString = '';
+
+		for (let i = 0; i < salt.length; i++) {
+			hexString += salt.charCodeAt(i).toString(16).padStart(2, '0');
+		}
+
+		return hexString;
 	}
 
-	private async hashPassword(password: string): Promise<string> {
-		const salt = this.generateSalt();
+	private async hashPassword(
+		password: string,
+		salt: string | null = null
+	): Promise<string> {
+		if (!salt) salt = await this.createSalt();
 		let hash = new TextEncoder().encode(password + salt);
 
 		for (let i = 0; i < this.iterations; i++) {
-			// hash = await crypto.subtle.digest('SHA-512', hash);
 			const arrayBuffer = await crypto.subtle.digest('SHA-512', hash);
 			hash = new Uint8Array(arrayBuffer);
 
@@ -51,8 +58,11 @@ class HashService {
 		);
 	}
 
-	public async getHash(str: string): Promise<string> {
-		return await this.hashPassword(str);
+	public async getHash(
+		str: string,
+		salt: string | null = null
+	): Promise<string> {
+		return await this.hashPassword(str, salt);
 	}
 }
 

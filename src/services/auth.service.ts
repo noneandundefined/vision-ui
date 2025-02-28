@@ -1,8 +1,7 @@
-import Cookies from 'js-cookie';
 import hashService from './hash.service';
 
 class AuthService {
-	private readonly cookie: string | undefined = Cookies.get('oauth');
+	private readonly session: string | null = sessionStorage.getItem('oauth');
 	private readonly metaAuth: HTMLMetaElement | null = document.querySelector(
 		'meta[name="authenticate"]'
 	);
@@ -15,7 +14,7 @@ class AuthService {
 	}
 
 	public isAuthenticate(): boolean {
-		return this.cookie ? true : false;
+		return this.session ? true : false;
 	}
 
 	public isMetaAuth(): boolean {
@@ -36,12 +35,12 @@ class AuthService {
 			throw new Error('Password not found or empty');
 		}
 
-		const newHash = await hashService.getHash(password);
+		const newHash = await hashService.getHash(password, salt);
 		if (auth !== newHash) {
 			throw new Error('Invalid password');
 		}
 
-		Cookies.set('oauth', 'authorized');
+		sessionStorage.setItem('oauth', 'authorized');
 		return 'Welcome to the vision UI panel!';
 	}
 
