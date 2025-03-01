@@ -1,0 +1,34 @@
+#!/bin/bash
+
+set -e
+
+echo "📦 Started publish to npm..."
+
+if [ ! -f "package.json" ]; then
+    echo "❌ Mistake: package.json not found!"
+    exit 1
+fi
+
+if ! npm whoami > /dev/null 2>&1; then
+    echo "🔑 login npm..."
+    npm login
+fi
+
+echo "🧹 Deleting the old build..."
+rm -rf dist node_modules
+
+if ! command -v pnpm &> /dev/null; then
+    echo "🚀 Installing pnpm..."
+    npm i -g pnpm
+fi
+
+echo "📥 Installing dependencies..."
+pnpm install
+
+echo "⚡️ TypeScript Compilation..."
+pnpm build
+
+echo "🚀 Publish to npm..."
+npm publish --access public
+
+echo "✅ Publication completed!"

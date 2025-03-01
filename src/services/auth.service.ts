@@ -1,7 +1,10 @@
 import hashService from './hash.service';
+import sessionService from './session.service';
 
 class AuthService {
-	private readonly session: string | null = sessionStorage.getItem('oauth');
+	private readonly session: string | null = sessionStorage.getItem(
+		sessionService.getKeyOAauth()
+	);
 	private readonly metaAuth: HTMLMetaElement | null = document.querySelector(
 		'meta[name="authenticate"]'
 	);
@@ -40,7 +43,7 @@ class AuthService {
 			throw new Error('Invalid password');
 		}
 
-		sessionStorage.setItem('oauth', 'authorized');
+		sessionService.create_auth(salt);
 		return 'Welcome to the vision UI panel!';
 	}
 

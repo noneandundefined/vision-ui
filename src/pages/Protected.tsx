@@ -5,6 +5,7 @@ import LockReset from '../constants/svgs/lock-reset';
 import hashService from '../services/hash.service';
 import authService from '../services/auth.service';
 import Copy from '../constants/svgs/content-copy';
+import MessageBox from '../components/MessageBox';
 
 interface ProtectedProps {
 	setIsError: any;
@@ -60,10 +61,14 @@ const Protected: React.FC<ProtectedProps> = ({
 }) => {
 	const [code, setCode] = useState(['', '', '', '', '', '']);
 	const [isModal, setIsModal] = useState<boolean>(false);
+	const [isMessage, setIsMessage] = useState<boolean>(false);
+	const [isMessageText, setIsMessageText] = useState<string>('');
 
 	const handleVerifyCode = async () => {
 		try {
-			await authService.login(code.join(''));
+			const response = await authService.login(code.join(''));
+			setIsMessage(true);
+			setIsMessageText(response)
 		} catch (error: any) {
 			setIsError(true);
 			setResponseError(error.message);
@@ -72,6 +77,12 @@ const Protected: React.FC<ProtectedProps> = ({
 
 	return (
 		<>
+			{isMessage && <MessageBox
+				status={200}
+				message={isMessageText}
+				setIsError={setIsMessage}
+			/>}
+
 			{isModal && <PaswdModal setIsModal={setIsModal} />}
 
 			<div className="flex flex-col justify-center items-center h-[80vh]">
