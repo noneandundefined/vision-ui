@@ -1,18 +1,22 @@
 class HashService {
 	private iterations: number;
 	private memoryCost: number;
+	private saltSize: number;
 
-	constructor(iterations = 50000, memoryCost = 1024 * 1024) {
+	constructor(iterations = 50000, memoryCost = 1024 * 1024, saltSize = 16) {
 		this.iterations = iterations;
 		this.memoryCost = memoryCost;
+		this.saltSize = saltSize;
 	}
 
 	// Генерация случайной соли
 	private async createSalt(): Promise<string> {
-		const hash = await crypto.subtle.digest(
-			'SHA-512',
-			new TextEncoder().encode(import.meta.env.VITE_SIGNATURE_VISION)
-		);
+		const array = new Uint8Array(this.saltSize);
+		crypto.getRandomValues(array);
+
+		const hash = Array.from(array, (byte) =>
+			byte.toString(16).padStart(2, '0')
+		).join('');
 
 		const salt = `VISION - ${Math.floor(Date.now() / 1000)}.[${hash}]`;
 		let hexString = '';
