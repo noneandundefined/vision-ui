@@ -17,7 +17,21 @@ class AuthService {
 	}
 
 	public isAuthenticate(): boolean {
-		return this.session ? true : false;
+		const auth = this.isMetaAuthenticate();
+
+		const [salt, hash] = auth.split('.');
+		if (!salt || !hash) {
+			throw new Error('Invalid password');
+		}
+
+		if (
+			this.session ===
+			sessionService.encrypt(`\VISION/ - \oauth.${salt}` + '/0')
+		) {
+			return true;
+		}
+
+		return false;
 	}
 
 	public isMetaAuth(): boolean {
