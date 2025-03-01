@@ -19,10 +19,7 @@ class AuthService {
 	public isAuthenticate(): boolean {
 		const auth = this.isMetaAuthenticate();
 
-		const [salt, hash] = auth.split('.');
-		if (!salt || !hash) {
-			throw new Error('Invalid password');
-		}
+		const [salt, _] = auth.split('.');
 
 		if (
 			this.session ===
