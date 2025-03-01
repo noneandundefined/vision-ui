@@ -4,15 +4,15 @@ set -e
 
 echo "Running post-commit hook..."
 
-YELLOW="\033[33m"
-GREEN="\033[32m"
+YELLOW="\033[0;33m"
+GREEN="\033[0;32m"
 RESET="\033[0m"
 
 
 # Отправляем поддерево папки preview/ на ветку preview
-echo "${GREEN}[|] Pushing preview/ folder to the preview branch...${RESET}"
+echo -e "${GREEN}[|] Pushing preview/ folder to the preview branch...${RESET}"
 git add -f preview
 git subtree push --prefix preview origin preview
 echo "[+] Preview folder pushed successfully!"
 
-echo "${YELLOW}[+] Post-commit hook completed!${RESET}"
+echo -e "${YELLOW}[+] Post-commit hook completed!${RESET}"

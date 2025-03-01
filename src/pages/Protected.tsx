@@ -68,7 +68,7 @@ const Protected: React.FC<ProtectedProps> = ({
 		try {
 			const response = await authService.login(code.join(''));
 			setIsMessage(true);
-			setIsMessageText(response)
+			setIsMessageText(response);
 		} catch (error: any) {
 			setIsError(true);
 			setResponseError(error.message);
@@ -77,11 +77,13 @@ const Protected: React.FC<ProtectedProps> = ({
 
 	return (
 		<>
-			{isMessage && <MessageBox
-				status={200}
-				message={isMessageText}
-				setIsError={setIsMessage}
-			/>}
+			{isMessage && (
+				<MessageBox
+					status={200}
+					message={isMessageText}
+					setIsError={setIsMessage}
+				/>
+			)}
 
 			{isModal && <PaswdModal setIsModal={setIsModal} />}
 
