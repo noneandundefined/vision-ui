@@ -43,12 +43,12 @@ Vision allows any user, whether it's your development team, to visually look at 
 		<!-- Stylization and actions -->
 		<script
 			type="module"
-			src="https://unpkg.com/@artemiik/vision-ui@1.0.2/dist/vision.bundle.js"
+			src="https://unpkg.com/@artemiik/vision-ui@1.1.2/dist/vision.bundle.js"
 			defer
 		></script>
 		<link
 			rel="stylesheet"
-			href="https://unpkg.com/@artemiik/vision-ui@1.0.2/dist/vision.css"
+			href="https://unpkg.com/@artemiik/vision-ui@1.1.2/dist/vision.css"
 		/>
 
 		<title>Look at the Vision!</title>
@@ -114,4 +114,4 @@ Refer to our [contribution guidelines](https://github.com/noneandundefined/visio
 
 ## Security contact
 
-Please disclose any security-related issues or vulnerabilities by emailing [@gmail.com](mailto:@gmail.com), instead of using the public issue tracker.
+Please disclose any security-related issues or vulnerabilities by emailing [vision@gmail.com](mailto:@gmail.com), instead of using the public issue tracker.

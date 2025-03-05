@@ -7,10 +7,11 @@ YELLOW="\033[0;33m"
 GREEN="\033[0;32m"
 RESET="\033[0m"
 
-# Получаем список измененных файлов
+CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+
 CHANGED_FILES=$(git diff --cached --name-only)
 
-if echo "$CHANGED_FILES" | grep -qE '^(src|test)/'; then
+if [ "$CURRENT_BRANCH" = "main" ] && echo "$CHANGED_FILES" | grep -qE '^(src|test)/'; then
     echo -e "${YELLOW}Changes in 'src' or 'test' directory detected.${RESET}"
 
     echo -e "${GREEN}[|] Running formatted and build...${RESET}"
@@ -19,19 +20,25 @@ if echo "$CHANGED_FILES" | grep -qE '^(src|test)/'; then
     echo "[+] Success formatted and build!"
 
     echo -e "${GREEN}[|] Remove files to preview...${RESET}"
-    # Удаляем старый файл из preview/
+
     rm -f ./preview/vision.bundle.js
     rm -f ./preview/vision.css
     echo "[+] Success remove files to preview!"
 
     echo -e "${GREEN}[|] Copy files dist/ -> preview/ ...${RESET}"
-    # Копируем новый файл из dist/ в preview/
+
     cp ./dist/vision.bundle.js ./preview/
     cp ./dist/vision.css ./preview/
     echo "[+] Success copy files!"
 
+    git add .
     echo -e "${GREEN}[+] Send files to branch main -> preview ...${RESET}"
-    # Отправляем изменения в папку preview на удаленный репозиторий
+elif echo "$CHANGED_FILES" | grep -qE '^(src|test)/'; then
+    echo -e "${YELLOW}Changes in 'src|test' directory detected. Only formatting will be done.${RESET}"
+
+    pnpm format
+    git add .
+    echo -e "${GREEN}[+] Success formatted for src|test!${RESET}"
 else
     echo -e "${YELLOW}No changes in 'src' directory. Skipping actions.${RESET}"
 fi

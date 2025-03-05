@@ -4,7 +4,7 @@ set -e
 
 echo "📦 Started publish to npm..."
 
-if [ ! -f "package.json" ]; then
+if [ ! -f "../package.json" ]; then
     echo "❌ Mistake: package.json not found!"
     exit 1
 fi
@@ -29,6 +29,7 @@ echo "⚡️ TypeScript Compilation..."
 pnpm build
 
 echo "🚀 Publish to npm..."
+cd ..
 npm publish --access public
 
 echo "✅ Publication completed!"
