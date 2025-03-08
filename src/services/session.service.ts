@@ -11,9 +11,6 @@ class SessionService {
 		const key = `\VISION/ - \oauth.${payload}` + '/0/./' + payload;
 		const value = `\VISION/ - \oauth.${data}` + '/0';
 
-		console.log(this.dencrypt(this.encrypt(key)));
-		console.log(this.dencrypt(this.encrypt(value)));
-
 		sessionStorage.setItem(this.encrypt(key), this.encrypt(value));
 	}
 
@@ -37,7 +34,7 @@ class SessionService {
 		return encryptedText;
 	}
 
-	private dencrypt(str: string) {
+	public dencrypt(str: string) {
 		let decryptedText = '';
 
 		for (let i = 0; i < str.length; i++) {

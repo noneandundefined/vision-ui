@@ -6,6 +6,7 @@ import hashService from '../services/hash.service';
 import authService from '../services/auth.service';
 import Copy from '../constants/svgs/content-copy';
 import MessageBox from '../components/MessageBox';
+import Spinner from '../components/Spinner';
 
 interface ProtectedProps {
 	setIsError: any;
@@ -61,17 +62,21 @@ const Protected: React.FC<ProtectedProps> = ({
 }) => {
 	const [code, setCode] = useState(['', '', '', '', '', '']);
 	const [isModal, setIsModal] = useState<boolean>(false);
+	const [loading, setLoading] = useState<boolean>(false);
 	const [isMessage, setIsMessage] = useState<boolean>(false);
 	const [isMessageText, setIsMessageText] = useState<string>('');
 
 	const handleVerifyCode = async () => {
 		try {
+			setLoading(true);
 			const response = await authService.login(code.join(''));
 			setIsMessage(true);
 			setIsMessageText(response);
 		} catch (error: any) {
 			setIsError(true);
 			setResponseError(error.message);
+		} finally {
+			setLoading(false);
 		}
 	};
 
@@ -115,10 +120,10 @@ const Protected: React.FC<ProtectedProps> = ({
 								Resend Code
 							</p>
 							<p
-								className="bg-[#3c3d488f] p-1 px-[0.7rem] rounded-md cursor-pointer hover:text-[#fff]"
+								className="flex items-center justify-center bg-[#3c3d488f] h-[1.8rem] w-[6rem] rounded-md cursor-pointer hover:text-[#fff]"
 								onClick={handleVerifyCode}
 							>
-								Verify Code
+								{loading ? <Spinner /> : 'Verify code'}
 							</p>
 						</div>
 					</div>
@@ -139,6 +144,7 @@ const Protected: React.FC<ProtectedProps> = ({
 const PaswdModal: React.FC<{ setIsModal: any }> = ({ setIsModal }) => {
 	const [code, setCode] = useState(['', '', '', '', '', '']);
 	const [paswd, setPaswd] = useState<string>('');
+	const [loading, _] = useState<boolean>(false);
 	const [paswdLabel, setPaswdLabel] = useState<string>('Enter the password');
 
 	return (
@@ -198,7 +204,7 @@ const PaswdModal: React.FC<{ setIsModal: any }> = ({ setIsModal }) => {
 								Back
 							</p>
 							<p
-								className="bg-[#3c3d488f] p-1 px-[0.7rem] rounded-md cursor-pointer hover:text-[#fff]"
+								className="flex items-center justify-center bg-[#3c3d488f] h-[1.8rem] w-[6rem] rounded-md cursor-pointer hover:text-[#fff]"
 								onClick={async () => {
 									setPaswd(
 										await hashService.getHash(code.join(''))
@@ -206,7 +212,7 @@ const PaswdModal: React.FC<{ setIsModal: any }> = ({ setIsModal }) => {
 									setPaswdLabel('Your hash:');
 								}}
 							>
-								Generate
+								{loading ? <Spinner /> : 'Generate'}
 							</p>
 						</div>
 					</div>
