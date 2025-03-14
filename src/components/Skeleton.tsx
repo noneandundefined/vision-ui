@@ -1,3 +1,8 @@
+// *---------------------------------------------------------------------------------------------
+// *  Copyright (c). All rights reserved.
+// *  Licensed under the LICENSE-APACHE. See License in the project root for license information.
+// *--------------------------------------------------------------------------------------------*
+
 const Skeleton = () => {
 	return (
 		<div className="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2">

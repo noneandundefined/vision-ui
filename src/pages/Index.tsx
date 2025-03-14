@@ -1,3 +1,8 @@
+// *---------------------------------------------------------------------------------------------
+// *  Copyright (c). All rights reserved.
+// *  Licensed under the LICENSE-APACHE. See License in the project root for license information.
+// *--------------------------------------------------------------------------------------------*
+
 import React, { useState } from 'react';
 import Effects from '../components/Effects';
 import Header from '../components/Header';

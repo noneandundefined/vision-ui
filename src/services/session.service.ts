@@ -1,3 +1,8 @@
+// *---------------------------------------------------------------------------------------------
+// *  Copyright (c). All rights reserved.
+// *  Licensed under the LICENSE-APACHE. See License in the project root for license information.
+// *--------------------------------------------------------------------------------------------*
+
 class SessionService {
 	private readonly key: string = `ViSiOn____vIsIoN__OAUTH_W)d9kf`
 		.split('')

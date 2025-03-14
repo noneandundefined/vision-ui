@@ -1,3 +1,8 @@
+// *---------------------------------------------------------------------------------------------
+// *  Copyright (c). All rights reserved.
+// *  Licensed under the LICENSE-APACHE. See License in the project root for license information.
+// *--------------------------------------------------------------------------------------------*
+
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import { config } from '../../config/config';

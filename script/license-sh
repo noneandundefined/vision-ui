@@ -1,0 +1,28 @@
+#!/bin/bash
+
+set -e
+
+HEADER="// *---------------------------------------------------------------------------------------------\n\
+// *  Copyright (c). All rights reserved.\n\
+// *  Licensed under the LICENSE-APACHE. See License in the project root for license information.\n\
+// *--------------------------------------------------------------------------------------------*\n"
+
+process_file() {
+    local file="$1"
+
+    if ! head -n 1 "$file" | grep -q "\*---------------------------------------------------------------------------------------------"; then
+        echo "Adding the title to: $file"
+        tmp_file=$(mktemp)
+        echo -e "$HEADER" > "$tmp_file"
+        echo "" >> "$tmp_file"
+        cat "$file" >> "$tmp_file"
+        mv "$tmp_file" "$file"
+    fi
+}
+
+cd ../
+find . -type d \( -name "node_modules" -o -name "dist" -o -name "docs" -o -name "preview" \) -prune -o \( -type f \( -name "*.tsx" -o -name "*.ts" -o -name "*.js" \) -print \) | while read -r file; do
+    process_file "$file"
+done
+
+echo "Verification completed!"

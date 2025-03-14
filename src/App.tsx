@@ -1,3 +1,8 @@
+// *---------------------------------------------------------------------------------------------
+// *  Copyright (c). All rights reserved.
+// *  Licensed under the LICENSE-APACHE. See License in the project root for license information.
+// *--------------------------------------------------------------------------------------------*
+
 import { useEffect, useState } from 'react';
 import Index from './pages/Index';
 import monitoringService from './services/monitoring.service';
