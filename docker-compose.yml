@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+    client:
+        build:
+            context: ./
+            dockerfile: Dockerfile
+        environment:
+        ports:
+            - '8080:4173'
+        mem_limit: 512m
+        mem_reservation: 256m
+        cpus: 1
+        cpu_shares: 512

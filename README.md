@@ -37,7 +37,7 @@ Vision allows any user, whether it's your development team, to visually look at 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta
 			name="description"
-			content="Keep up to date with what is happening on your server using - Vision"
+			content="Keep up to date with what is happening on your server using - Vision UI"
 		/>
 
 		<!-- Stylization and actions -->
