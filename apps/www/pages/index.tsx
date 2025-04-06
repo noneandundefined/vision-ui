@@ -4,17 +4,17 @@
 // *--------------------------------------------------------------------------------------------*
 
 import React, { useState } from 'react';
-import Effects from '../components/Effects';
-import Header from '../components/Header';
-import Cancel from '../constants/svgs/cancel';
-import Database from '../constants/svgs/database';
-import Received from '../constants/svgs/received';
-import Server from '../constants/svgs/server';
-import ServerLoad from '../components/Index/ServerLoad';
-import LastErrors from '../components/Index/LastErrors';
-import Requests from '../components/Index/Requests';
-import { MonitoringType } from '../types/monitoring';
-import DatabaseInfo from '../components/Index/DatabaseInfo';
+import Effects from '../components/layout/effects';
+import Header from '../components/layout/header';
+import Cancel from '../components/common/svgs/cancel';
+import Database from '../components/common/svgs/database';
+import Received from '../components/common/svgs/received';
+import Server from '../components/common/svgs/server';
+import ServerLoad from '../components/common/widgets/server-widget';
+import LastErrors from '../components/common/widgets/error-widget';
+import Requests from '../components/common/widgets/request-widget';
+import { MonitoringType } from '../../app/types/monitoring';
+import DatabaseInfo from '../components/common/widgets/database-widget';
 
 const panel_list = [
 	{

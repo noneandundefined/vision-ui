@@ -1,4 +1,5 @@
 /src
+/apps
 
 node_modules
 dist-ssr

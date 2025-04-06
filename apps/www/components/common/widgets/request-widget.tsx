@@ -4,19 +4,21 @@
 // *--------------------------------------------------------------------------------------------*
 
 import React from 'react';
-import Speed from '../../constants/svgs/speed';
-import Received from '../../constants/svgs/received';
-import Cancel from '../../constants/svgs/cancel';
+import Cancel from '@/www/components/common/svgs/cancel';
+import Done from '@/www/components/common/svgs/done';
+import Received from '@/www/components/common/svgs/received';
+import Speed from '@/www/components/common/svgs/speed';
 
-interface DatabaseProps {
+interface RequestsWidgetProps {
 	data?: {
-		database_queries?: number;
-		database_error?: number;
-		database_avg_latency_ms?: number;
+		request_avg_latency_ms?: number;
+		request_count?: number;
+		request_success_count?: number;
+		request_error_count?: number;
 	};
 }
 
-const DatabaseInfo: React.FC<DatabaseProps> = ({ data }) => {
+const RequestsWidget: React.FC<RequestsWidgetProps> = ({ data }) => {
 	return (
 		<>
 			<div className="flex items-center justify-between my-[2rem]">
@@ -26,7 +28,7 @@ const DatabaseInfo: React.FC<DatabaseProps> = ({ data }) => {
 				>
 					<div>
 						<p className="text-[1.4rem]" id="title__request">
-							{data?.database_avg_latency_ms?.toFixed(2)}ms
+							{data?.request_avg_latency_ms?.toFixed(2)}ms
 						</p>
 						<p className="text-[13px]" id="desc__request">
 							Average response values
@@ -41,7 +43,7 @@ const DatabaseInfo: React.FC<DatabaseProps> = ({ data }) => {
 				>
 					<div>
 						<p className="text-[1.4rem]" id="title__request">
-							{data?.database_queries} QTY
+							{data?.request_count} QTY
 						</p>
 						<p className="text-[13px]" id="desc__request">
 							Total requests
@@ -56,7 +58,7 @@ const DatabaseInfo: React.FC<DatabaseProps> = ({ data }) => {
 				>
 					<div>
 						<p className="text-[1.4rem]" id="title__request">
-							{data?.database_error} QTY
+							{data?.request_error_count} QTY
 						</p>
 						<p className="text-[13px]" id="desc__request">
 							Total request errors
@@ -64,9 +66,24 @@ const DatabaseInfo: React.FC<DatabaseProps> = ({ data }) => {
 					</div>
 					<Cancel fill="#fff" size={30} />
 				</div>
+
+				<div
+					className="flex gap-7 items-center justify-center bg-[#ffffff21] hover:bg-[#a2a2a221] transition p-2 min-w-[15.2rem] rounded cursor-pointer"
+					id="block__request"
+				>
+					<div>
+						<p className="text-[1.4rem]" id="title__request">
+							{data?.request_success_count} QTY
+						</p>
+						<p className="text-[13px]" id="desc__request">
+							Total success requests
+						</p>
+					</div>
+					<Done fill="#fff" size={30} />
+				</div>
 			</div>
 		</>
 	);
 };
 
-export default DatabaseInfo;
+export default RequestsWidget;

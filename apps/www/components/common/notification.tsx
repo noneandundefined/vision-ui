@@ -4,17 +4,17 @@
 // *--------------------------------------------------------------------------------------------*
 
 import { useEffect } from 'react';
-import Cancel from '../constants/svgs/cancel';
-import Close from '../constants/svgs/close';
-import Done from '../constants/svgs/done';
+import Cancel from '@/www/components/common/svgs/cancel';
+import Close from '@/www/components/common/svgs/close';
+import Done from '@/www/components/common/svgs/done';
 
-interface MessageBoxProps {
+interface NotificationProps {
 	status: number;
 	message: string;
 	setIsError: any;
 }
 
-const MessageBox: React.FC<MessageBoxProps> = ({
+const Notification: React.FC<NotificationProps> = ({
 	status,
 	message,
 	setIsError,
@@ -86,4 +86,4 @@ const MessageBox: React.FC<MessageBoxProps> = ({
 	);
 };
 
-export default MessageBox;
+export default Notification;

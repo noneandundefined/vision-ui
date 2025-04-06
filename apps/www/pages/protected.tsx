@@ -4,14 +4,14 @@
 // *--------------------------------------------------------------------------------------------*
 
 import { useState } from 'react';
-import Effects from '../components/Effects';
-import Close from '../constants/svgs/close';
-import LockReset from '../constants/svgs/lock-reset';
-import hashService from '../services/hash.service';
-import authService from '../services/auth.service';
-import Copy from '../constants/svgs/content-copy';
-import MessageBox from '../components/MessageBox';
-import Spinner from '../components/Spinner';
+import Effects from '../components/layout/effects';
+import Close from '../components/common/svgs/close';
+import LockReset from '../components/common/svgs/lock-reset';
+import hashService from '@/app/services/hash.service';
+import authService from '@/app/services/auth.service';
+import Copy from '../components/common/svgs/content-copy';
+import MessageBox from '../components/common/notification';
+import Spinner from '../components/common/spinner';
 
 interface ProtectedProps {
 	setIsError: any;

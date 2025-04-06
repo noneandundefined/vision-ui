@@ -4,13 +4,13 @@
 // *--------------------------------------------------------------------------------------------*
 
 import { useEffect, useState } from 'react';
-import Index from './pages/Index';
-import monitoringService from './services/monitoring.service';
-import { MonitoringType } from './types/monitoring';
-import MessageBox from './components/MessageBox';
-import Skeleton from './components/Skeleton';
-import authService from './services/auth.service';
-import Protected from './pages/Protected';
+import Index from './www/pages';
+import monitoringService from '@/app/services/monitoring.service';
+import { MonitoringType } from './app/types/monitoring';
+import Notification from '@/www/components/common/notification';
+import Skeleton from '@/www/components/common/skeleton';
+import authService from '@/app/services/auth.service';
+import Protected from './www/pages/protected';
 
 const App = () => {
 	const isAuth = authService.isMetaAuth();
@@ -45,7 +45,7 @@ const App = () => {
 	const renderGlobalContent = () => {
 		if (isError) {
 			return (
-				<MessageBox
+				<Notification
 					status={500}
 					message={responseError}
 					setIsError={setIsError}
@@ -63,7 +63,7 @@ const App = () => {
 	return (
 		<>
 			{isError && (
-				<MessageBox
+				<Notification
 					status={500}
 					message={responseError}
 					setIsError={setIsError}

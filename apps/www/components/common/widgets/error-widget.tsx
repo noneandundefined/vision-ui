@@ -4,19 +4,19 @@
 // *--------------------------------------------------------------------------------------------*
 
 import React from 'react';
-import ChevronDown from '../../constants/svgs/chevron-down';
-import Close from '../../constants/svgs/close';
-import { ErrorLog } from '../../types/monitoring';
+import ChevronDown from '@/www/components/common/svgs/chevron-down';
+import Close from '@/www/components/common/svgs/close';
+import { ErrorLog } from '@/app/types/monitoring';
 
-interface LastErrorsProps {
+interface ErrorsWidgetProps {
 	data?:
-		| {
-				last_errors?: ErrorLog[];
-		  }
-		| undefined;
+	| {
+		last_errors?: ErrorLog[];
+	}
+	| undefined;
 }
 
-const LastErrors: React.FC<LastErrorsProps> = ({ data }) => {
+const ErrorsWidget: React.FC<ErrorsWidgetProps> = ({ data }) => {
 	return (
 		<>
 			<div className="mt-[2rem] flex flex-col gap-5">
@@ -54,4 +54,4 @@ const LastErrors: React.FC<LastErrorsProps> = ({ data }) => {
 	);
 };
 
-export default LastErrors;
+export default ErrorsWidget;

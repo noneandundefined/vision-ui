@@ -4,9 +4,9 @@
 // *--------------------------------------------------------------------------------------------*
 
 import React from 'react';
-import Memory from '../../constants/svgs/memory';
+import Memory from '@/www/components/common/svgs/memory';
 
-interface ServerLoadProps {
+interface ServerWidgetProps {
 	data?: {
 		cpu_usage?: number;
 		memory_usage?: number;
@@ -14,7 +14,7 @@ interface ServerLoadProps {
 	};
 }
 
-const ServerLoad: React.FC<ServerLoadProps> = ({ data }) => {
+const ServerWidget: React.FC<ServerWidgetProps> = ({ data }) => {
 	return (
 		<>
 			<div className="flex items-center gap-3 server__load">
@@ -202,4 +202,4 @@ const ServerLoad: React.FC<ServerLoadProps> = ({ data }) => {
 	);
 };
 
-export default ServerLoad;
+export default ServerWidget;
