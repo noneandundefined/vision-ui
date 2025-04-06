@@ -11,8 +11,8 @@ CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
 CHANGED_FILES=$(git diff --cached --name-only)
 
-if [ "$CURRENT_BRANCH" = "main" ] && echo "$CHANGED_FILES" | grep -qE '^(src|test)/'; then
-    echo -e "${YELLOW}Changes in 'src' or 'test' directory detected.${RESET}"
+if [ "$CURRENT_BRANCH" = "main" ] && echo "$CHANGED_FILES" | grep -qE '^(apps|test)/'; then
+    echo -e "${YELLOW}Changes in 'apps' or 'test' directory detected.${RESET}"
 
     echo -e "${GREEN}[|] Running formatted and build...${RESET}"
     pnpm format
@@ -33,14 +33,14 @@ if [ "$CURRENT_BRANCH" = "main" ] && echo "$CHANGED_FILES" | grep -qE '^(src|tes
 
     git add .
     echo -e "${GREEN}[+] Send files to branch main -> preview ...${RESET}"
-elif echo "$CHANGED_FILES" | grep -qE '^(src|test)/'; then
-    echo -e "${YELLOW}Changes in 'src|test' directory detected. Only formatting will be done.${RESET}"
+elif echo "$CHANGED_FILES" | grep -qE '^(apps|test)/'; then
+    echo -e "${YELLOW}Changes in 'apps|test' directory detected. Only formatting will be done.${RESET}"
 
     pnpm format
     git add .
-    echo -e "${GREEN}[+] Success formatted for src|test!${RESET}"
+    echo -e "${GREEN}[+] Success formatted for apps|test!${RESET}"
 else
-    echo -e "${YELLOW}No changes in 'src' directory. Skipping actions.${RESET}"
+    echo -e "${YELLOW}No changes in 'apps' directory. Skipping actions.${RESET}"
 fi
 
 echo -e "${YELLOW}Husky is successfully!${RESET}"

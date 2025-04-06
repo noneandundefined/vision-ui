@@ -10,10 +10,10 @@ import { ErrorLog } from '@/app/types/monitoring';
 
 interface ErrorsWidgetProps {
 	data?:
-	| {
-		last_errors?: ErrorLog[];
-	}
-	| undefined;
+		| {
+				last_errors?: ErrorLog[];
+		  }
+		| undefined;
 }
 
 const ErrorsWidget: React.FC<ErrorsWidgetProps> = ({ data }) => {
