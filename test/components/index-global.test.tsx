@@ -5,11 +5,11 @@
 
 import { describe, expect, it, vi } from 'vitest';
 import '@testing-library/jest-dom';
-import App from '../../src/App';
+import App from '../../apps/App';
 import { render, screen } from '@testing-library/react';
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import Index from '../../src/pages/Index';
+import Index from '../../apps/www/pages/index';
 
 vi.mock('../../src/services/monitoring.service', () => ({
 	__esModule: true,

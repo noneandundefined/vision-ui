@@ -7,7 +7,7 @@ import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import { config } from '../../config/config';
 import { afterEach, beforeAll, describe, expect, it } from 'vitest';
-import monitoringService from '../../src/services/monitoring.service';
+import monitoringService from '../../apps/app/services/monitoring.service';
 
 const mock = new MockAdapter(axios);
 
