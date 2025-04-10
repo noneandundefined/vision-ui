@@ -1,9 +1,9 @@
 {
 	"message": {
 		"requests": {
-			"request_count": 7,
+			"request_count": 100,
 			"request_error_count": 0,
-			"request_success_count": 100,
+			"request_success_count": 96,
 			"request_avg_latency_ms": 301
 		},
 		"database": {

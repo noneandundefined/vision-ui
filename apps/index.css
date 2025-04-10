@@ -8,7 +8,7 @@
 	font-weight: 400;
 
 	color: rgba(255, 255, 255, 0.87);
-	background-color: #00000c;
+	background-color: #000;
 
 	font-synthesis: none;
 	text-rendering: optimizeLegibility;
@@ -25,23 +25,7 @@ body {
 	padding: 0;
 }
 
-@media only screen and (max-width: 1550px) {
-	#vision {
-		margin: 4rem 12vw;
-	}
-}
-
-@media only screen and (max-width: 1310px) {
-	#vision {
-		margin: 4rem 8vw;
-	}
-}
-
 @media only screen and (max-width: 1200px) {
-	#vision {
-		margin: 4rem 5vw;
-	}
-
 	#title__panel {
 		font-size: 14px;
 	}

@@ -4,10 +4,10 @@
 // *--------------------------------------------------------------------------------------------*
 
 import React from 'react';
-import Cancel from '@/www/components/common/svgs/cancel';
-import Done from '@/www/components/common/svgs/done';
-import Received from '@/www/components/common/svgs/received';
-import Speed from '@/www/components/common/svgs/speed';
+import {
+	CircularProgressbarWithChildren,
+	buildStyles,
+} from 'react-circular-progressbar';
 
 interface RequestsWidgetProps {
 	data?: {
@@ -21,67 +21,69 @@ interface RequestsWidgetProps {
 const RequestsWidget: React.FC<RequestsWidgetProps> = ({ data }) => {
 	return (
 		<>
-			<div className="flex items-center justify-between my-[2rem]">
-				<div
-					className="flex gap-7 items-center justify-center bg-[#ffffff21] hover:bg-[#a2a2a221] transition p-2 min-w-[15.2rem] rounded cursor-pointer"
-					id="block__request"
-				>
-					<div>
-						<p className="text-[1.4rem]" id="title__request">
-							{data?.request_avg_latency_ms?.toFixed(2)}ms
-						</p>
-						<p className="text-[13px]" id="desc__request">
-							Average response values
-						</p>
-					</div>
-					<Speed fill="#fff" size={30} />
+			<article>
+				<div className="px-2 py-1 bg-[#ffffff14]">
+					<p className="text-[12px] text-[#fff] text-uppercase">
+						REQUESTS
+					</p>
 				</div>
-
-				<div
-					className="flex gap-7 items-center justify-center bg-[#ffffff21] hover:bg-[#a2a2a221] transition p-2 min-w-[15.2rem] rounded cursor-pointer"
-					id="block__request"
-				>
-					<div>
-						<p className="text-[1.4rem]" id="title__request">
-							{data?.request_count} QTY
-						</p>
-						<p className="text-[13px]" id="desc__request">
-							Total requests
-						</p>
+				<div className="p-5 min-w-[20vw] border border-[#ffffff14]">
+					<div className="flex space-x-10 justify-center">
+						{[
+							{
+								value:
+									((data?.request_error_count ?? 0) /
+										(data?.request_count ?? 1)) *
+									100,
+								label: 'Error count',
+								description: data?.request_error_count ?? 0,
+								color: '#00E6D2',
+							},
+							{
+								value:
+									((data?.request_success_count ?? 0) /
+										(data?.request_count ?? 1)) *
+									100,
+								label: 'Success count',
+								description: '55 min',
+								color: '#C084FC',
+							},
+							{
+								value:
+									((data?.request_error_count ?? 0) /
+										(data?.request_count ?? 1)) *
+									100,
+								label: 'Breaks',
+								description: '1 hr 24 min',
+								color: '#60A5FA',
+							},
+						].map(({ value, label, description, color }) => (
+							<div
+								key={label}
+								className="flex items-center gap-3"
+							>
+								<div className="w-[3.2rem] h-[3.2rem]">
+									<CircularProgressbarWithChildren
+										value={value}
+										styles={buildStyles({
+											pathColor: color,
+											trailColor: '#2D2D2D',
+										})}
+									>
+										<div className="text-[12px] font-semibold text-white">
+											{value}%
+										</div>
+									</CircularProgressbarWithChildren>
+								</div>
+								<div className="text-[13px]">
+									<p className="font-bold">{label}</p>
+									<p>{description}</p>
+								</div>
+							</div>
+						))}
 					</div>
-					<Received fill="#fff" size={30} />
 				</div>
-
-				<div
-					className="flex gap-7 items-center justify-center bg-[#ffffff21] hover:bg-[#a2a2a221] transition p-2 min-w-[15.2rem] rounded cursor-pointer"
-					id="block__request"
-				>
-					<div>
-						<p className="text-[1.4rem]" id="title__request">
-							{data?.request_error_count} QTY
-						</p>
-						<p className="text-[13px]" id="desc__request">
-							Total request errors
-						</p>
-					</div>
-					<Cancel fill="#fff" size={30} />
-				</div>
-
-				<div
-					className="flex gap-7 items-center justify-center bg-[#ffffff21] hover:bg-[#a2a2a221] transition p-2 min-w-[15.2rem] rounded cursor-pointer"
-					id="block__request"
-				>
-					<div>
-						<p className="text-[1.4rem]" id="title__request">
-							{data?.request_success_count} QTY
-						</p>
-						<p className="text-[13px]" id="desc__request">
-							Total success requests
-						</p>
-					</div>
-					<Done fill="#fff" size={30} />
-				</div>
-			</div>
+			</article>
 		</>
 	);
 };

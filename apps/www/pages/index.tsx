@@ -3,91 +3,62 @@
 // *  Licensed under the LICENSE-APACHE. See License in the project root for license information.
 // *--------------------------------------------------------------------------------------------*
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Effects from '../components/layout/effects';
 import Header from '../components/layout/header';
-import Cancel from '../components/common/svgs/cancel';
-import Database from '../components/common/svgs/database';
-import Received from '../components/common/svgs/received';
-import Server from '../components/common/svgs/server';
-import ServerLoad from '../components/common/widgets/server-widget';
-import LastErrors from '../components/common/widgets/error-widget';
-import Requests from '../components/common/widgets/request-widget';
 import { MonitoringType } from '../../app/types/monitoring';
-import DatabaseInfo from '../components/common/widgets/database-widget';
-
-const panel_list = [
-	{
-		title: 'Server load',
-		icon: <Server fill="#fff" size={19} />,
-		step: 0,
-	},
-	{
-		title: 'Database',
-		icon: <Database fill="#fff" size={19} />,
-		step: 1,
-	},
-	{
-		title: 'Requests',
-		icon: <Received fill="#fff" size={19} />,
-		step: 2,
-	},
-	{
-		title: 'Last errors',
-		icon: <Cancel fill="#fff" size={19} />,
-		step: 3,
-	},
-];
+import WorkhoursWidget from '../components/common/widgets/workhours-widget';
+import RequestsWidget from '../components/common/widgets/request-widget';
 
 const Index: React.FC<{ data: MonitoringType }> = ({ data }) => {
-	const [currentStep, setCurrentStep] = useState<number>(0);
+	const [dateString, setDateString] = useState(() => {
+		const options = {
+			weekday: 'long',
+			year: 'numeric',
+			month: 'long',
+			day: 'numeric',
+		};
+		return new Date().toLocaleDateString('en-US', options as any);
+	});
 
-	const displayStep = (step: number) => {
-		switch (step) {
-			case 0:
-				return <ServerLoad data={data?.system} />;
-			case 1:
-				return <DatabaseInfo data={data?.database} />;
-			case 2:
-				return <Requests data={data?.requests} />;
-			case 3:
-				return (
-					<LastErrors
-						data={{
-							last_errors: data?.last_errors || [],
-						}}
-					/>
-				);
-		}
-	};
+	useEffect(() => {
+		const intervalId = setInterval(() => {
+			const options = {
+				weekday: 'long',
+				year: 'numeric',
+				month: 'long',
+				day: 'numeric',
+			};
+			setDateString(
+				new Date().toLocaleDateString('en-US', options as any)
+			);
+		}, 1000);
+
+		return () => clearInterval(intervalId);
+	}, []);
 
 	return (
 		<>
 			<Effects />
 
-			<div>
+			<>
 				<Header />
 
-				<div className="my-5 flex items-center justify-between bg-[#ffffff21]">
-					{panel_list.map((panel, index) => (
-						<div
-							className={`flex items-center gap-4 cursor-pointer transition p-4 px-[3rem]`}
-							style={
-								currentStep === panel.step
-									? { background: '#ffffff17' }
-									: { background: 'transparent' }
-							}
-							key={index}
-							onClick={() => setCurrentStep(panel.step)}
-						>
-							<p id="title__panel">{panel.title}</p>
-							{panel.icon}
-						</div>
-					))}
-				</div>
+				<main className="px-10 py-5">
+					<h3 className="text-[#fff] text-[1.11rem] font-medium pb-5">
+						{dateString}
+					</h3>
 
-				<div>{displayStep(currentStep)}</div>
-			</div>
+					<div className="flex">
+						<div className="w-1/3"></div>
+						<div className="w-1/3"></div>
+						<div className="w-1/3">
+							<WorkhoursWidget />
+							<RequestsWidget data={data.requests} />
+						</div>
+					</div>
+				</main>
+			</>
 		</>
 	);
 };
