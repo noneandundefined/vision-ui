@@ -29,8 +29,8 @@ const ErrorsWidget: React.FC<ErrorsWidgetProps> = ({ data }) => {
 									key={index}
 									className={
 										index % 2 === 0
-											? 'bg-[transparent] cursor-pointer transition hover:bg-[transparent]'
-											: 'bg-[#ffffff14] cursor-pointer hover:bg-[transparent] transition'
+											? 'bg-[transparent] cursor-pointer transition hover:bg-[#444]'
+											: 'bg-[#ffffff14] cursor-pointer hover:bg-[#444] transition'
 									}
 								>
 									<td className="text-[12px] px-2 py-2 border-b border-[#ffffff14]">

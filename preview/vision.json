@@ -16,6 +16,9 @@
 			"memory_usage": 72,
 			"network_recv": 269.65092086792
 		},
+		"workhours": {
+			"time": "7 hr 51 min"
+		},
 		"last_errors": [
 			{
 				"timestamp": "2025-02-16T12:36:49.000Z",

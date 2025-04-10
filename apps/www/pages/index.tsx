@@ -36,7 +36,7 @@ const Index: React.FC<{ data: MonitoringType }> = ({ data }) => {
 			setDateString(
 				new Date().toLocaleDateString('en-US', options as any)
 			);
-		}, 10000000);
+		}, 1000000);
 
 		return () => clearInterval(intervalId);
 	}, []);
