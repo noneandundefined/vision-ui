@@ -41,6 +41,64 @@
 				"path": "/signup",
 				"error": "Error: The database connection is disabled"
 			}
+		],
+		"logs": [
+			{
+				"timestamp": "2025-02-17T11:19:35.000Z",
+				"info": "Error: The database connection is disabled"
+			},
+			{
+				"timestamp": "2025-02-17T11:19:35.000Z",
+				"info": "Succes connect to database"
+			},
+			{
+				"timestamp": "2025-02-17T11:19:35.000Z",
+				"info": "Success create user"
+			},
+			{
+				"timestamp": "2025-02-17T11:19:35.000Z",
+				"info": "CONNECTED 192.255.189.109:5543"
+			},
+			{
+				"timestamp": "2025-02-17T11:19:35.000Z",
+				"info": "Command sent 4 bytes -> 'NONE'"
+			},
+			{
+				"timestamp": "2025-02-17T11:19:35.000Z",
+				"info": "4 bytes ic received -> 'sent'"
+			},
+			{
+				"timestamp": "2025-02-17T11:19:35.000Z",
+				"info": "Error: The database connection is disabled"
+			},
+			{
+				"timestamp": "2025-02-17T11:19:35.000Z",
+				"info": "Error: The database connection is disabled"
+			},
+			{
+				"timestamp": "2025-02-17T11:19:35.000Z",
+				"info": "Error: The database connection is disabled"
+			},
+			{
+				"timestamp": "2025-02-17T11:19:35.000Z",
+				"info": "Error: The database connection is disabled"
+			},
+			{
+				"timestamp": "2025-02-17T11:19:35.000Z",
+				"info": "Error: The database connection is disabled"
+			},
+			{
+				"timestamp": "2025-02-17T11:19:35.000Z",
+				"info": "Error: The database connection is disabled"
+			},
+			{
+				"timestamp": "2025-02-17T11:19:35.000Z",
+				"info": "Error: The database connection is disabled"
+			},
+			{
+				"timestamp": "2025-02-17T11:19:35.000Z",
+				"info": "Error: The database connection is disabled"
+			}
 		]
 	}
 }
