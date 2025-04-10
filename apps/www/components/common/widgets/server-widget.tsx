@@ -4,7 +4,10 @@
 // *--------------------------------------------------------------------------------------------*
 
 import React from 'react';
-import Memory from '@/www/components/common/svgs/memory';
+import {
+	CircularProgressbarWithChildren,
+	buildStyles,
+} from 'react-circular-progressbar';
 
 interface ServerWidgetProps {
 	data?: {
@@ -17,187 +20,62 @@ interface ServerWidgetProps {
 const ServerWidget: React.FC<ServerWidgetProps> = ({ data }) => {
 	return (
 		<>
-			<div className="flex items-center gap-3 server__load">
-				{data?.memory_usage && (
-					<div className="bg-[#ffffff21] p-3">
-						<div className="flex">
-							<div className="relative">
-								<div className="size-[9rem]">
-									<svg
-										className="size-[8rem] -rotate-90"
-										viewBox="0 0 36 36"
-										xmlns="http://www.w3.org/2000/svg"
+			<article className="py-2">
+				<div className="px-2 py-1 bg-[#ffffff14]">
+					<p className="text-[12px] text-[#fff] text-uppercase">
+						SYSTEM
+					</p>
+				</div>
+				<div className="p-5 border border-[#ffffff14]">
+					<div className="flex space-x-10 justify-center">
+						{[
+							{
+								value: (data?.cpu_usage ?? 0).toFixed(0),
+								label: 'CPU usage',
+								description: `${(data?.cpu_usage ?? 0).toFixed(2)} usage`,
+								color: '#FF3F3F',
+							},
+							{
+								value: (data?.memory_usage ?? 0).toFixed(0),
+								label: 'Memory usage',
+								description: `${(data?.memory_usage ?? 0).toFixed(2)} usage`,
+								color: '#C084FC',
+							},
+							{
+								value: (
+									(data?.network_recv ?? 0) / 11.1
+								).toFixed(0),
+								label: 'Network usage',
+								description: `${((data?.network_recv ?? 0) / 11.1).toFixed(2)} usage`,
+								color: '#60A5FA',
+							},
+						].map(({ value, label, description, color }) => (
+							<div
+								key={label}
+								className="flex items-center gap-3"
+							>
+								<div className="w-[3.2rem] h-[3.2rem]">
+									<CircularProgressbarWithChildren
+										value={Number(value)}
+										styles={buildStyles({
+											pathColor: color,
+											trailColor: '#2D2D2D',
+										})}
 									>
-										<circle
-											cx="18"
-											cy="18"
-											r="16"
-											fill="none"
-											className="stroke-current text-gray-200 dark:text-neutral-700"
-											strokeWidth="3"
-										></circle>
-										<circle
-											cx="18"
-											cy="18"
-											r="16"
-											fill="none"
-											className="stroke-current"
-											style={{ color: '#ffe900' }}
-											strokeWidth="3"
-											strokeDasharray="100"
-											strokeDashoffset={`${100 - data?.memory_usage}`}
-											strokeLinecap="round"
-										></circle>
-									</svg>
-
-									<div className="absolute top-[4rem] left-[4.2rem] transform -translate-y-1/2 -translate-x-1/2">
-										<span
-											className="text-center text-xl font-semibold server__load__memory"
-											style={{ color: '#ffe900' }}
-										>
-											{data?.memory_usage}%
-										</span>
-									</div>
+										<div className="text-[12px] font-semibold text-white">
+											{value}%
+										</div>
+									</CircularProgressbarWithChildren>
+								</div>
+								<div className="text-[13px]">
+									<p className="font-bold">{label}</p>
+									<p>{description}</p>
 								</div>
 							</div>
-							<div>
-								<div className="flex items-center gap-2">
-									<div className="h-[21px] w-[21px] rounded-[50%] bg-[#ffe900]"></div>
-									<p className="text-[13px]">
-										{data?.memory_usage}%
-									</p>
-								</div>
-							</div>
-						</div>
-
-						<div className="flex items-center gap-2">
-							<Memory fill="#fff" size={21} />
-							<p className="text-[13px]">Memory</p>
-						</div>
+						))}
 					</div>
-				)}
-
-				{data?.cpu_usage && (
-					<div className="bg-[#ffffff21] p-3">
-						<div className="flex ">
-							<div className="relative">
-								<div className="size-[9rem]">
-									<svg
-										className="size-[8rem] -rotate-90"
-										viewBox="0 0 36 36"
-										xmlns="http://www.w3.org/2000/svg"
-									>
-										<circle
-											cx="18"
-											cy="18"
-											r="16"
-											fill="none"
-											className="stroke-current text-gray-200 dark:text-neutral-700"
-											strokeWidth="3"
-										></circle>
-										<circle
-											cx="18"
-											cy="18"
-											r="16"
-											fill="none"
-											className="stroke-current"
-											style={{ color: '#00ff6e' }}
-											strokeWidth="3"
-											strokeDasharray="100"
-											strokeDashoffset={`${100 - parseFloat(data?.cpu_usage.toFixed(2))}`}
-											strokeLinecap="round"
-										></circle>
-									</svg>
-
-									<div className="absolute top-[4rem] left-[4.2rem] transform -translate-y-1/2 -translate-x-1/2">
-										<span
-											className="text-center text-xl font-semibold server__load__cpu"
-											style={{ color: '#00ff6e' }}
-										>
-											{data?.cpu_usage?.toFixed(2)}%
-										</span>
-									</div>
-								</div>
-							</div>
-							<div>
-								<div className="flex items-center gap-2">
-									<div className="h-[21px] w-[21px] rounded-[50%] bg-[#00ff6e]"></div>
-									<p className="text-[13px]">
-										{data?.cpu_usage?.toFixed(2)}%
-									</p>
-								</div>
-							</div>
-						</div>
-
-						<div className="flex items-center gap-2">
-							<Memory fill="#fff" size={21} />
-							<p className="text-[13px]">CPU</p>
-						</div>
-					</div>
-				)}
-
-				{data?.network_recv && (
-					<div className="bg-[#ffffff21] p-3">
-						<div className="flex ">
-							<div className="relative">
-								<div className="size-[9rem]">
-									<svg
-										className="size-[8rem] -rotate-90"
-										viewBox="0 0 36 36"
-										xmlns="http://www.w3.org/2000/svg"
-									>
-										<circle
-											cx="18"
-											cy="18"
-											r="16"
-											fill="none"
-											className="stroke-current text-gray-200 dark:text-neutral-700"
-											strokeWidth="3"
-										></circle>
-										<circle
-											cx="18"
-											cy="18"
-											r="16"
-											fill="none"
-											className="stroke-current"
-											style={{ color: '#6100ff' }}
-											strokeWidth="3"
-											strokeDasharray="100"
-											strokeDashoffset={`${100 - data?.network_recv / 100}`}
-											strokeLinecap="round"
-										></circle>
-									</svg>
-
-									<div className="absolute top-[4rem] left-[4.2rem] transform -translate-y-1/2 -translate-x-1/2">
-										<span
-											className="text-center text-xl font-semibold server__load__network"
-											style={{ color: '#6100ff' }}
-										>
-											{(data?.network_recv / 100).toFixed(
-												2
-											)}
-											%
-										</span>
-									</div>
-								</div>
-							</div>
-							<div>
-								<div className="flex items-center gap-2">
-									<div className="h-[21px] w-[21px] rounded-[50%] bg-[#6100ff]"></div>
-									<p className="text-[13px]">
-										{(data?.network_recv / 100).toFixed(2)}%
-									</p>
-								</div>
-							</div>
-						</div>
-
-						<div className="flex items-center gap-2">
-							<Memory fill="#fff" size={21} />
-							<p className="text-[13px]">Network</p>
-						</div>
-					</div>
-				)}
-			</div>
+				</div>
+			</article>
 		</>
 	);
 };

@@ -4,52 +4,59 @@
 // *--------------------------------------------------------------------------------------------*
 
 import React from 'react';
-import ChevronDown from '@/www/components/common/svgs/chevron-down';
-import Close from '@/www/components/common/svgs/close';
 import { ErrorLog } from '@/app/types/monitoring';
 
 interface ErrorsWidgetProps {
-	data?:
-		| {
-				last_errors?: ErrorLog[];
-		  }
-		| undefined;
+	data?: {
+		last_errors?: ErrorLog[];
+	};
 }
 
 const ErrorsWidget: React.FC<ErrorsWidgetProps> = ({ data }) => {
 	return (
 		<>
-			<div className="mt-[2rem] flex flex-col gap-5">
-				<p className="text-[1.2rem] font-semibold">Last Errors</p>
-
-				{data?.last_errors?.length == 0 ? (
-					<p className="text-center my-[5rem] text-[14px] text-[#ccc]">
-						You don't have any errors on the server
+			<article>
+				<div className="px-2 py-1 bg-[#ffffff14]">
+					<p className="text-[12px] text-[#fff] text-uppercase">
+						LAST ERRORS
 					</p>
-				) : (
-					<div className="flex flex-col gap-1">
-						{data?.last_errors?.map((error, index) => (
-							<div
-								className="bg-[#ff000036] hover:bg-[#ff000017] transition p-3 rounded-md cursor-pointer"
-								key={index}
-							>
-								<div className="flex items-center justify-between">
-									<div className="flex items-center gap-3">
-										<div className="bg-[#4b0000] p-1 rounded-[50%]">
-											<Close fill="#ff00005e" size={19} />
-										</div>
-										<p className="text-[14px]">
-											{error.error}
-										</p>
-									</div>
-
-									<ChevronDown fill="#fff" />
-								</div>
-							</div>
-						))}
-					</div>
-				)}
-			</div>
+				</div>
+				<div className="p-5 border border-[#ffffff14]">
+					<table className="min-w-full">
+						<tbody>
+							{data?.last_errors?.map((error, index) => (
+								<tr
+									key={index}
+									className={
+										index % 2 === 0
+											? 'bg-[transparent] cursor-pointer transition hover:bg-[transparent]'
+											: 'bg-[#ffffff14] cursor-pointer hover:bg-[transparent] transition'
+									}
+								>
+									<td className="text-[12px] px-2 py-2 border-b border-[#ffffff14]">
+										{new Date(
+											error.timestamp
+										).toLocaleTimeString([], {
+											hour: '2-digit',
+											minute: '2-digit',
+											second: '2-digit',
+										})}
+									</td>
+									<td className="text-[12px] px-2 py-2 border-b border-[#ffffff14]">
+										{error.method}
+									</td>
+									<td className="text-[12px] px-2 py-2 border-b border-[#ffffff14]">
+										{error.path}
+									</td>
+									<td className="text-[12px] px-2 py-2 border-b border-[#ffffff14]">
+										{error.error}
+									</td>
+								</tr>
+							))}
+						</tbody>
+					</table>
+				</div>
+			</article>
 		</>
 	);
 };

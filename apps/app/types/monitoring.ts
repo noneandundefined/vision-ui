@@ -24,6 +24,8 @@ export type MonitoringType = {
 	};
 
 	last_errors?: ErrorLog[];
+
+	logs?: Logs[];
 };
 
 export interface ErrorLog {
@@ -31,4 +33,9 @@ export interface ErrorLog {
 	method: string;
 	path: string;
 	error: string;
+}
+
+export interface Logs {
+	timestamp: Date;
+	info: string;
 }

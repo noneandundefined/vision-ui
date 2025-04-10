@@ -9,6 +9,10 @@ import Header from '../components/layout/header';
 import { MonitoringType } from '../../app/types/monitoring';
 import WorkhoursWidget from '../components/common/widgets/workhours-widget';
 import RequestsWidget from '../components/common/widgets/request-widget';
+import ServerWidget from '../components/common/widgets/server-widget';
+import DatabaseWidget from '../components/common/widgets/database-widget';
+import ErrorsWidget from '../components/common/widgets/error-widget';
+import LogsWidget from '../components/common/widgets/logs-widget';
 
 const Index: React.FC<{ data: MonitoringType }> = ({ data }) => {
 	const [dateString, setDateString] = useState(() => {
@@ -32,7 +36,7 @@ const Index: React.FC<{ data: MonitoringType }> = ({ data }) => {
 			setDateString(
 				new Date().toLocaleDateString('en-US', options as any)
 			);
-		}, 1000);
+		}, 10000000);
 
 		return () => clearInterval(intervalId);
 	}, []);
@@ -49,12 +53,20 @@ const Index: React.FC<{ data: MonitoringType }> = ({ data }) => {
 						{dateString}
 					</h3>
 
-					<div className="flex">
-						<div className="w-1/3"></div>
-						<div className="w-1/3"></div>
+					<div className="flex gap-4">
+						<div className="w-1/3">
+							<LogsWidget data={{ logs: data.logs }} />
+						</div>
+						<div className="w-1/3">
+							<ErrorsWidget
+								data={{ last_errors: data.last_errors }}
+							/>
+						</div>
 						<div className="w-1/3">
 							<WorkhoursWidget />
 							<RequestsWidget data={data.requests} />
+							<ServerWidget data={data.system} />
+							<DatabaseWidget data={data.database} />
 						</div>
 					</div>
 				</main>

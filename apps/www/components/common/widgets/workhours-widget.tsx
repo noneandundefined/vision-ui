@@ -7,7 +7,7 @@ const WorkhoursWidget = () => {
 						WORK HOURS
 					</p>
 				</div>
-				<div className="p-5 min-w-[20vw] border border-[#ffffff14]">
+				<div className="p-5 border border-[#ffffff14]">
 					<div>
 						<p className="text-[13px] text-[#999]">
 							Total time started
